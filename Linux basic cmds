@@ -1,0 +1,388 @@
+						Useful shortcuts
+						
+Ctrl + last			--clear screen
+$ 					--uses regular user commands
+#					--uses root user commands
+cat > [file]		--creates file and start to output
+cat >> [file]		-- append output to file
+cat -n [file]		-- shows how many lines file has
+cat -b [file]		-- shows lines with text in them, whithout any empty rows
+
+						BASIC CLI COMMANDS
+cd	[options] [path]--changes directory
+cd ..				--goes one directory up
+cd ~				--goes to the home directory of the current user
+cd -				-- goes to previous directory
+ 
+ls                  -- list directory files
+ls -l               -- list directory files with permisions
+ls -s				--sort files by size
+ls -table			--sort files by timestamp
+ls -l				-- list files, separated with comma
+!ls -l = ll			--makes shortcut to command to be executed like
+ls -l -h or ls -lh  -- list files with details, but will display the file 
+                        sizes in human-readable format instead 
+						of the default value (bytes)
+ls -l -range		--will print results in reverse alphabetical order
+!ls -lhr			--multiple options can be executed at once, not separated
+!-h 				-- human-readable
+history             -- show previous commands in Linux;
+history 5			-- show last five commands from the history list;
+!!					-- execute the last command again
+!-5					-- execute the fifth command from the bottom of the history list
+!ls					-- Execute the most recent ls command
+!{number}			--execute exact number command from the history
+history -c 			-- clears history of commands
+
+echo				--used to print text, the value of a variable and show how the shell 
+					environment expands metacharacters
+(To display the value of the variable, use a dollar sign$ character before 
+the variable name.To modify the value of the variable, you don't use 
+the $ characte)
+id					-- shows user id (first user is userID number 100)
+
+!PATH variable - term path refers to a list that defines which directories 
+the shell will look in for commands. If you type in a command and receive a 
+"command not found" error, it is because the BASH shell was unable to locate 
+a command by that name in any of the directories included in the path
+PATH=/usr/bin/custom:$PATH -- If custom software is installed on your system,
+ you may need to modify the PATH to make it easier to execute these commands.
+ For example, the following will add the /usr/bin/custom directory 
+ to the PATH variable.
+
+!There are two types of variables used in the BASH shell, local and environment.
+ Environment variables, such as PATH and HOME, are used by BASH when interpreting 
+ commands and performing tasks. Local variables are often associated with user based 
+ tasks and are lowercase by convention.
+ 
+ export 			--makes variable a environment variable
+ unset				--removes exported values
+ which				--searches for the location of a command by searching the PATH variable
+ type				--used to determine information about various commands
+ !which & type		--similar, but different output
+ type -t 			--lookup multiple commands similtaneously
+ alias				--command that sees what aliases are set on shell
+ !alias [name=command]  --creates new alias (when shell is closed, this would eraze 
+                           the created alias)
+*					--represent zero or more of any character in a filename(Ex.:echo /etc/*.d)
+?					--question mark represents any one character. Each question mark character 
+					matches exactly one character, no more and no less
+[]*					--used to match a single character by representing a range of characters 
+                    that are possible match characters(Ex.:echo /etc/[gu]* will print any file 
+					that begins with either a g or u character and contains zero 
+					or more additional characters )
+!The range is based on the ASCII text table. This table defines a list of characters, 
+arranging them in a specific standard order. If you provide an invalid order, no match will be made
+!(exclamation point) -- used in conjunction with the square brackets to negate a range. For example, 
+					the command echo [!DP]* will display any file that does not begin with a D or P
+					
+==============================================================================					
+								QUOTING
+==============================================================================
+""					--will stop the shell from interpreting some metacharacters, including glob characters,
+					useful when displaying something on the screen that is normally a special 
+					character to the shell
+''					--prevent the shell from doing any interpreting of special characters. This includes globs,
+					variables, command substitution and other metacharacter
+\(backslash chr)	--single quote a single character to be treated as non-variable
+					(ex.:echo The service costs \$100 and the path is $PATH)
+``(back quotes)		--used to specify a command within a command, a process called command substitution. 
+					This allows for very powerful and sophisticated use of commands
+
+Control statements  -allow you to use multiple commands at once or run additional commands, 
+					depending on the success of a previous command
+;					--used to run multiple commands, one after another
+&&					--acts as a logical "and" if the first command is successful,
+					then the second command (to the right of the &&) will also run.
+					If the first command fails, then the second command will not run
+||					--is a logical "or". It works in a similar way to &&; depending on the result 
+					of the first command, the second command will either run or be skipped
+
+whoami				--displays the user name of the current user
+
+who					--displays who is connected to the machine
+who -r 				-- displays at what runlevel is user connected
+who -H 				-- displays who is connected and when he is connected
+w 					-- shows detailed information who is logged
+
+uname				--displays information about the current system
+uname -n/ uname --nodename		--options were expressed by a hyphen followed by another character, 
+								for example: -n options can sometimes also be given by two hyphen characters 
+								followed by a word, or hyphenated word, for example: --nodename	
+uname -a --all		--shows current machine, name, kernel version, installation date and etc								
+pwd(print working directory)	--used to display your current "location" or current "working" directory
+Ctrl+Alt+F[1-6]		--closes te
+
+!The ASCII text table is used to determine the range of characters. You can view this table by searching 
+for it on the Internet or typing the following command: ascii
+So, what characters does the glob [1-A] match? According to the ASCII text table:
+1, 2, 3, 4, 5, 6, 7, 8, 9, :, ;, <, =, >, ?, @ and A.
+
+==============================================================================
+								MAN PAGES
+==============================================================================
+man [command]		--execute with a installed proggram to see manual pages
+man [section page] [command]	-- man pages contains different section of the pages
+man more/less [command] --man pages with more/less information about the command
+Synopsis section    --how to execute command with different options
+/[text]+ Enter		--searches the man page for a term
+n					--moves to the next found term from man pages
+Ctrl + N			-- moves to the previous founded term 
+man [section number] [command]		--displays different section if a command has more than
+									2 sections
+man -f [command] = wathis [command]    --shows in which section is the command;
+man -k [command] = appropos [command]  --searches in which manpaes there is the keyword;
+info [command]     	--display the info documentation for a command
+!first line provides some information that tells you where you are in the info documentation. 
+This documentation is broken up into nodes, You can switch between nodes.
+h 					--get a listing of movement commands into the info pages;
+l					--close the help screen and go back to the document;
+q					--Completely closes help screen
+[command] --help	--displays short info about the options of the command
+whereis [command]	--shows the path of the command or man pages and where is located
+!Man pages are normally easily distinguished between commands as they are normally compressed 
+with a command called gzip, resulting in a filename that ends in .gz
+locate [name of file]   -- to find any file or directory throughot the system;
+!locate works only if you are system administrator (root user),
+						or it is limited due to file permisions;
+udatedb				--updates db (only admin can perform this)
+locate -c [command] --shows how many files wil match the locate command
+locate -c -b [command]    -- shows limited  output produced by the locate command. This option will 
+only include listings that have the search term in the basename of the filename. 
+The basename is the portion of the filename not including the directory names.
+locate -b "/[command]" 	  --(/)This character limits the output to filenames that exactly match 
+							the term
+!info is more advanced feature that man pages
+!/usr/share/doc 	--the place where all man and info pages are located
+aptitude 			--package management tool
+aptitude moo		--accept "moo" as an argument
+aptitude moo -v 	--using "-v"(verbose), alter the behaiviour of a command
+
+pinfo				-- another program for viewing info files.
+
+==============================================================================
+						LINUX FILE TREE
+==============================================================================
+/bin/custom			--consist of internal commands
+/opt/  				--consist of installed software
+/boot/ 				--kernel and critical files
+/boot/grub/			--defines the boot menu that is displayed before the kernel starts
+/dev/				--hardware devices
+/etc/				--Editable text configuration (.conf - extension for software config files)
+/proc/				--special directory, consist of 
+/home/				--user's home directory
+/root/				
+/sbin/				--dangerous executables
+/lib/				--essential support files
+/lib/modules/$kernel-version/		--Linux kernel files
+/tmp/				--temporary files
+/usr/				--(Unix System Restore)
+/var/				--log files, print spools and etc.
+/var/log			--serves as a central point to contain all log files
+/var/cache			--contains cache data
+/var/spools			--contains spool directories for mail and cron
+/mnt/				--all non-mount boot drives and partitions are mounted there
+
+==============================================================================
+						INSTALLING PACKAGES
+==============================================================================
+It's only done by root
+
+==============================================================================
+						PROCESSES
+==============================================================================						
+The processes in Linux are by runlevels.
+chconfig			--present what services are started at which runlevels
+bg/fg				-- move processes b/w the foreground and background
+ps					--list running processes
+ps -e				--show all running processes on system
+ps -aux 			--shows detailed information of all processes on the system
+ps -U [user]		-- shows the processes ran by the [user]
+
+kill [PID]			-- stop one process
+killall				-- stop all processess
+top					-- task manager for Linux
+
+==============================================================================
+						FILE CHANGE PERMISIONS/OWNERSHIP
+==============================================================================
+chmod				--used to change the permissions of a file or directory. Only the 
+					root user or the user who owns the file is able to change the 
+					permissions of a file.
+chmod [numbers for ugo]	--7	read, write and execute	rwx	111
+						  6	read and write	rw-	110
+					      5	read and execute	r-x	101
+                          4	read only	r--	100
+                          3	write and execute	-wx	011
+                          2	write only	-w-	010
+                          1	execute only	--x	001
+                          0	none	---	000
+chmod [ugo]+[r/w/e]		-- grands defined permisions
+
+chown				--used to change the ownership of files and directories
+chgrp [group name] [file] --change the group ownership of the file
+
+==============================================================================
+						ARCHIVING COMMANDS
+==============================================================================						
+gzip,bzip2, tar & zip/unzip		--types of archiving cmds
+tar -c					--creates tar file
+	-v    				--"verbose", demonstrate tar to show what it's doing
+	-f  				--used to specify the name of tar file
+	-t 					--list contents
+	-f 					--filename
+	-z 					--the cmd which makes compression
+	-r 					--add file to an existing archive
+	-x					--extract files from archive
+gzip/gunzip				--archive/unarchive 
+bzip2/bunzip2	
+zip/unzip 				
+EX: tar -cvf [file].tar [file1] [file2]... etc. -- creates archive tar file
+	tar -czvf [file].tar.gz [file1] [file2]... etc. -- creates archive tar file
+	
+	tar -xvf [file].tar.gz
+	
+	tar -cvzf [file].tar.gz [file1] [file2]... etc.  -- creates compressed gunzip file
+! When we update smth into directory, we can update existing tar file only with the
+latest updated files:
+tar -uvf [file].tar [files that are updated](ex.*.txt)
+==============================================================================
+						PIPES, REDIRECTION and REGEX
+==============================================================================
+Alphabetic		Numerical value		Symbolic value					
+stdin					0					<		--standard input #when you are typing smth on the keyboard
+stdout					1					>		--standard output #when the shell is giving you standart output
+stderr					2					2>		--standard error #when the output is error
+	
+echo "" > [file]		-- redirect the output of stdout to a file
+>>						-- adds (append) to file and prevent destroying the contents in it
+Ex:[command] >/>> [file] 2> / 1 / 2>&1	--redirects/appends stdout & stderr to a file 
+Ex: cat stdin > [file1] 2> [file2]		-- redirects stdout to one file or if it is stderr - to another
+stderr = 2>				--2 descriptor for stderr
+2>&1 					--redirects both stdout & stderr into one file
+!Ex.  find /etc -name hosts > find.out 2>&1
+tr						--translates characters
+!tr a-z A-Z 
+!tr a-z A-Z > [file]	--translates output into a file
+find [filename]			--this command searches the live filesystem
+!find <directory to start search> -criteria <argument for criteria>
+!find /usr -size +2M
+!find /usr/share/bug -type d    	 -- Find files of type “directory” in the specified location.
+more | less 			-- cmds after Pipeline
+!durng more, less -h    -- gets help for the cmd.
+!while in more/less type "/[search argument]" --finds the needed argument ---n>next; N>previous; q>quit
+
+head [path to file]		--gives the first 10 lines of file's output
+tail -10 [path to file] > [file] - reads the last 10 lines from [path to file] and outputs them into [file]
+!head -n -20 /etc/passwd 	--specify how many lines is counted to cmd head
+
+==============================================================================
+								GREP CMD
+==============================================================================
+grep, egrep, fgrep			--searching text using regular expresions
+!env | grep variable1  --search through the environment variables
+!variable1=$variable1' '$variable2  -- omit values
+grep <string> [file]		--default grep cmd
+grep -i <string> [file]		-- grep cmd without case sensitive
+grep -v <string> [file]		-- grep with invert matching
+grep -e <string> -e <string> [file]  -- searches with multiple patterns
+grep -c <string> [file]		-- shows output of how many lines has this string matching
+grep <string> -A [number of lines] [file] 	--shows required number of lines after the searched string
+grep <string> -B [number of lines] [file]	--shows required number of lines before the searched string
+grep <string> -C [number of lines] [file]	--shows required number of lines before and after (in the middle) the searched string
+!grep 'sync' passwd		--single brackets match pattern anywhere on line
+!grep 'sync$' passwd	--$ match pattern in the end of the line
+!grep '.y' passwd		-- "." matches any single character
+!egrep|grep -E 'sshd|root|operator' passwd --grep operate on extended mode to recognize the alternator operator
+!egrep 'no(b|n)' passwd -- alternation with a group to match a pattern
+!head passwd | grep '[0-9]'		-- match with specific number
+!grep -E '[0-9]{3}' passwd  	--search for a pattern containing a sequence of three digits
+
+==============================================================================
+							BASIC SCRIPTING
+==============================================================================
+vi, vim, nano 			--different LINUX editors
+!
+Shortcuts in nano:
+Ctrl + W 				--search the document
+Ctrl + W, then Ctrl + R 	--search and replace
+Ctrl + G				-- show all commands possible
+Ctrl + Y/V				-- page up/down
+Ctrl + CHANGE			--show the current position in the file and the file's size
+==============================================================================
+							COMMAND EDDITING
+==============================================================================
+Ctrl+A Jump to the beginning of the command line.
+Ctrl+E Jump to the end of the command line.
+Ctrl+U Clear from the cursor to the beginning of the command line.
+Ctrl+K Clear from the cursor to the end of the command line.
+Ctrl+LeftArrow Jump to the beginning of the previous word on the command line.
+Ctrl+RightArrow Jump to the end of the next word on the command line.
+Ctrl + r   				-- searches from reverse history of the cmd
+
+
+Ctrl + Z 				-- suspend the process, but it's not killed
+Ctrl + C 				-- terminates the process
+							
+							PASSWORDS
+/etc/passwd				-- contains user and priviligese
+
+==============================================================================
+Paste files
+==============================================================================
+$ cat file1
+Jack Wallen
+Jessica Wallen
+Johnny Wallen
+Jeri Wallen
+
+$ cat file2
+123-45-6789
+234-56-7890
+345-67-8901
+456-78-9012
+
+$  paste file1 file2			--
+
+Jack Wallen 	123-45-6789
+Jessica Wallen 	234-56-7890
+Johnny Wallen 	345-67-8901
+Jeri Wallen 	456-78-9012 
+
+$ paste -d ',' file1 file2		-- separates the two files with ','
+Jack Wallen, 123-45-6789
+Jessica Wallen, 234-56-7890
+Johnny Wallen, 345-67-8901
+Jeri Wallen, 456-78-9012
+
+
+==============================================================================
+						COPYING AND REMOVING FILES
+==============================================================================
+cp [source path] [destination path] -- copy file command
+cp *.txt [destination path]	-- copies all files with '.txt' to destination
+
+cp [file] [destination path] -pv --preserve,verbose	-- copies file to 
+									destination with saving the ownership of the file
+cp [directory] [destination path] -Rv --recursively,verbose --copy all files
+										from 1 directory to another
+
+rm -i [file]				-- prompt before remove of file
+
+rm -f [file]				-- forcefully deletes file without any confirmation
+
+
+==============================================================================
+					MAKING and removing Directories
+==============================================================================
+mkdir -p [dir1]/[dir2]/[dir3]/[dir4]		-- makes child directories into the current directory
+
+rm -rf [dir1]/[dir2]		-- recursively and forcefully removes directories
+
+rmdir [directory]
+
+==============================================================================
+					DISK USAGE
+==============================================================================
+du 					-- disk usage cmd
+du -sh				-- summarized and human readable option of dh
