@@ -6,8 +6,10 @@ Linux is modular overall.
 ======================================================
 1. Boot loader          -- 
 2. Boot manager         -- stand above boot loader, gives us choise which kernel should be loaded on the machine
-3. Kernel               -- the core that will be loaded
-
+3. Kernel               -- the core of the OS and manages the hardware
+*Process - The running programs that the kernel manages.
+*Kernel space - The area of the memory that only the kernel can access
+*User space   - The main memory allocated by the kernel for user processes
 ======================================================
                 User components
 ======================================================
@@ -31,3 +33,6 @@ Linux distributions runs on modules. One module has multiple components.
 - Window manager(WindowMaker, sawfish, fvwm)          -- responsible for window appearances
 
 - Desktop manager(KDE,GNOME,XFCE)         -- responsible for desktop apearance
+
+
+
