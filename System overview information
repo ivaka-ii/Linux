@@ -1,0 +1,33 @@
+Linux is monolithic system, which runs its kernel to operate.
+Linux is modular overall.
+
+======================================================
+                System components
+======================================================
+1. Boot loader          -- 
+2. Boot manager         -- stand above boot loader, gives us choise which kernel should be loaded on the machine
+3. Kernel               -- the core that will be loaded
+
+======================================================
+                User components
+======================================================
+1. Daemons              -- all the services that are running on the distribution
+2. The Shell
+3. Graphical Environment
+4. User Applications
+
+======================================================
+            Docs & Guides       Support
+======================================================
+Linux distributions runs on modules. One module has multiple components.
+
+======================================================
+         Linux Graphical Environment
+======================================================
+- Display server(Xorg,XFree86,X11)          -- It is responsible for all I/O devices(keyboards, mouse and etc.)
+
+- Display manager(GDM,KDM,XDM)(login manager)    -- responsible for user authentification sessions
+
+- Window manager(WindowMaker, sawfish, fvwm)          -- responsible for window appearances
+
+- Desktop manager(KDE,GNOME,XFCE)         -- responsible for desktop apearance
