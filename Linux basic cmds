@@ -38,7 +38,7 @@ echo				--used to print text, the value of a variable and show how the shell
 					environment expands metacharacters
 (To display the value of the variable, use a dollar sign$ character before 
 the variable name.To modify the value of the variable, you don't use 
-the $ characte)
+the $ character)
 id					-- shows user id (first user is userID number 100)
 
 !PATH variable - term path refers to a list that defines which directories 
@@ -75,7 +75,24 @@ PATH=/usr/bin/custom:$PATH -- If custom software is installed on your system,
 arranging them in a specific standard order. If you provide an invalid order, no match will be made
 !(exclamation point) -- used in conjunction with the square brackets to negate a range. For example, 
 					the command echo [!DP]* will display any file that does not begin with a D or P
-					
+<Ctrl>+<A> or <Home>		-- Move to the beginning of the line
+<Ctrl>+<E> or <End>		-- Move to the end of the line
+<Ctrl>+<B> or <Left>		-- Move left(backward) one character
+<Alt>+<B>			-- Move left(backward) one word
+<Ctrl>+<F> or <Right>		-- Move right(forward) one character
+<Alt>+ <F>			-- Move right(forward) one word
+==============================================================================					
+				ENVIRONMENT VARIABLES
+==============================================================================
+HOSTNAME			-- name of the host
+USER				-- Current user
+HOME				-- Path to the home of the current user
+PWD				-- Path to the current working directory
+OLDPWD				-- Previous value of PWD
+SHELL				-- Path to the user's preffered shell
+PATH				-- List of directories to search for executable files
+HISTFILE			-- Path to the history file
+HISTSIZE			-- Size of the command history
 ==============================================================================					
 								QUOTING
 ==============================================================================
