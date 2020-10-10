@@ -407,6 +407,33 @@ du -sh				-- summarized and human readable option of dh
 ======================================================
                       Users, ACLs, Groups
 ======================================================
+Users
+--------------------------------------------------
+useradd				-- 
+usermod
+userdel
+adduser (ubuntu)		--	
+deluser (ubuntu)		--
+users				--
+passwd (current)/[user]		-- changes password
+id				-- print real and effective user and group IDs
+
+su [user name]			-- switch user
+
+sudo [cmd] [object]		-- gives temporary permissions to be super user
+sudo -u [user] [cmd] [object]	-- performs cmd as other user
+
+Groups
+----------------------------------------------------
+groupadd
+groupmod
+addgroup
+delgroup
+gpasswd				-- changes password for groups
+
+!If a user makes some changes, the changes are made on behalf of its primary group, if we want to login 
+to a secondary group, we are using cmd "newgrp [name of the group]"
+
 User default creation:
 -Default values:
 	- read from file /etc/login.defs
@@ -414,5 +441,25 @@ User default creation:
 - Default files:
 	- taken from /etc/skel/*		-- directory that contains default directories and files for every new user
 	
-Group
+
 groups file -/etc/group
+group passwords -/etc/gshadow
+
+Set group ID		-- allows users to run a program as if it was member of the group
+- usually used for directories
+- all new files are owned by the group
+- n umeric permission is 2xxx
+
+chmod 2644 [file]	-- set SGID to a file with a permissions 644
+chmod g+s [file]	-- set SGID using a symbolic notation
+
+ACLs
+------------------------------------------------------------
+umask			-- when set, it takes away (modifies) the default permission of a file
+
+Sticky bits		-- prevent non-owners of a file to delete it
+-usually used for directories
+numeric permission is 1xxx
+can be set as follows:
+chmod 1775 [directory]	-- set a sticky bit of a folder with permissions 755
+chmod o+t /dir		-- set sticky bit using symbolic notation
