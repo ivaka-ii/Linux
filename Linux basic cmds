@@ -403,3 +403,16 @@ rmdir [directory]
 ==============================================================================
 du 					-- disk usage cmd
 du -sh				-- summarized and human readable option of dh
+
+======================================================
+                      Users, ACLs, Groups
+======================================================
+User default creation:
+-Default values:
+	- read from file /etc/login.defs
+	- read from file /etc/default/useradd
+- Default files:
+	- taken from /etc/skel/*		-- directory that contains default directories and files for every new user
+	
+Group
+groups file -/etc/group
