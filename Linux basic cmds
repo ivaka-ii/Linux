@@ -3,10 +3,12 @@
 Ctrl + last			--clear screen
 $ 					--uses regular user commands
 #					--uses root user commands
-cat > [file]		--creates file and start to output
+cat > [file]		--creates file and start to output / rewrites what is directed and overwrites the file
 cat >> [file]		-- append output to file
 cat -n [file]		-- shows how many lines file has
 cat -b [file]		-- shows lines with text in them, whithout any empty rows
+!Creating here document
+$cat > file.txt << EOF		--creates file until we enter the "EOF" into the file or whatever we typed
 
 						BASIC CLI COMMANDS
 cd	[options] [path]--changes directory
@@ -57,6 +59,7 @@ PATH=/usr/bin/custom:$PATH -- If custom software is installed on your system,
  
  export 			--makes variable a environment variable
  unset				--removes exported values
+ !set -o noclobber		--(Dis)allow regular files to be overwritten by redirection
  which				--searches for the location of a command by searching the PATH variable
  type				--used to determine information about various commands
  !which & type		--similar, but different output
