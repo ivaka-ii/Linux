@@ -34,5 +34,21 @@ Linux distributions runs on modules. One module has multiple components.
 
 - Desktop manager(KDE,GNOME,XFCE)         -- responsible for desktop apearance
 
+======================================================
+         Security
+======================================================
+Two levels of security
+1. Discretionary Access Control (DAC)
+        - regular file access permissions
+        - Access Control Lists (ACL)
+2. Mandatory Access Control (MAC)
+        - Typical examples - SELinux and AppArmor
+Applied from Level 1 to Level 2
 
-
+======================================================
+          LINUX Paths
+======================================================
+1. Absolute path (starts with /)
+    --calculated from the root of the file system tree
+2. Relative path (no leading /)
+    -- calculated from the current working directory
