@@ -466,3 +466,16 @@ numeric permission is 1xxx
 can be set as follows:
 chmod 1775 [directory]	-- set a sticky bit of a folder with permissions 755
 chmod o+t /dir		-- set sticky bit using symbolic notation
+
+======================================================
+          COMMAND SEQUENCE
+======================================================
+Execute in order (disconnected)
+    Sequence: command1; command2       -- with semicolumn both of the cmds are executed independetly
+
+Execute in order (connected)
+    Pipe: command1 | command2           -- command2 is executed is command1 is true
+    
+ Execute conditionally
+    On Success: Command1 && command2    -- if command1 is 0, execute command2
+    On Failure: command1 || command2    -- if command1 is error, execute command2
