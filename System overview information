@@ -65,16 +65,5 @@ Ex.: $cat missing.txt > out.txt 2>&1
 #different conmpared to
      $cat missin.txt 2>&1 > out.txt
 
-======================================================
-          COMMAND SEQUENCE
-======================================================
-Execute in order (disconnected)
-    Sequence: command1; command2       -- with semicolumn both of the cmds are executed independetly
 
-Execute in order (connected)
-    Pipe: command1 | command2           -- command2 is executed is command1 is true
-    
- Execute conditionally
-    On Success: Command1 && command2    -- if command1 is 0, execute command2
-    On Failure: command1 || command2    -- if command1 is error, execute command2
     
