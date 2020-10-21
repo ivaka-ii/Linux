@@ -10,6 +10,15 @@ cat -b [file]		-- shows lines with text in them, whithout any empty rows
 !Creating here document
 $cat > file.txt << EOF		--creates file until we enter the "EOF" into the file or whatever we typed
 
+tee			-- read from standart input and write to standart output and files
+Ex. cat list.txt | tee listed.txt
+
+xargs			-- build and execute command lines from standart output
+Ex.: echo Dir1 > dir.txt
+     echo Dir2 >> dir.txt
+     echo Dir3 >> dir.txt
+     cat dir.txt | xargs mkdir
+
 						BASIC CLI COMMANDS
 cd	[options] [path]--changes directory
 cd ..				--goes one directory up
@@ -60,6 +69,7 @@ PATH=/usr/bin/custom:$PATH -- If custom software is installed on your system,
  export 			--makes variable a environment variable
  unset				--removes exported values
  !set -o noclobber		--(Dis)allow regular files to be overwritten by redirection
+ set +o noclobber		-- Allows files to be overwritten
  which				--searches for the location of a command by searching the PATH variable
  type				--used to determine information about various commands
  !which & type		--similar, but different output
@@ -70,10 +80,20 @@ PATH=/usr/bin/custom:$PATH -- If custom software is installed on your system,
 *					--represent zero or more of any character in a filename(Ex.:echo /etc/*.d)
 ?					--question mark represents any one character. Each question mark character 
 					matches exactly one character, no more and no less
-[]*					--used to match a single character by representing a range of characters 
-                    that are possible match characters(Ex.:echo /etc/[gu]* will print any file 
+[characters]*				--used to match a single character by representing a range of characters
+					that are possible match characters(Ex.:echo /etc/[gu]* will print any file 
 					that begins with either a g or u character and contains zero 
 					or more additional characters )
+[!characters]				--characters that is NOT a member of set characters
+[[:class:]]				-- characters that is a member of the specified class
+	[:alnum:]				-- Alphabetic characters A-Z, a-z and 0-9
+	[:word:]				-- same as [:alnum:] including underscore (_)
+	[:alpha:]				-- Alphabetic characters A-Z and a-z
+	[:digit:]				-- Numeric characters 0-9
+	[:lower:]				-- All lowercase letters a-z
+	[:upper:]				-- All uppercase letters A-Z
+
+                    			
 !The range is based on the ASCII text table. This table defines a list of characters, 
 arranging them in a specific standard order. If you provide an invalid order, no match will be made
 !(exclamation point) -- used in conjunction with the square brackets to negate a range. For example, 
@@ -115,6 +135,9 @@ Control statements  -allow you to use multiple commands at once or run additiona
 &&					--acts as a logical "and" if the first command is successful,
 					then the second command (to the right of the &&) will also run.
 					If the first command fails, then the second command will not run
+|					-- changing two or more programs output together
+Ex.: ls | sort | head -n 3
+
 ||					--is a logical "or". It works in a similar way to &&; depending on the result 
 					of the first command, the second command will either run or be skipped
 
@@ -288,6 +311,9 @@ find [filename]			--this command searches the live filesystem
 !find <directory to start search> -criteria <argument for criteria>
 !find /usr -size +2M
 !find /usr/share/bug -type d    	 -- Find files of type “directory” in the specified location.
+!find /tmp -type f -user root		-- Find all files owned by particular user
+!find /tmp -type f ! -user root		-- Find all files which do not belong to particular user
+!find /tmp -type f -mtime 0 -ls		-- all files that are changed today
 more | less 			-- cmds after Pipeline
 !durng more, less -h    -- gets help for the cmd.
 !while in more/less type "/[search argument]" --finds the needed argument ---n>next; N>previous; q>quit
@@ -296,8 +322,33 @@ head [path to file]		--gives the first 10 lines of file's output
 tail -10 [path to file] > [file] - reads the last 10 lines from [path to file] and outputs them into [file]
 !head -n -20 /etc/passwd 	--specify how many lines is counted to cmd head
 
+======================================================
+          Regular expressions
+======================================================
+Consists of  literals and metacharacters
+  Basic Regular Expressions (BRE)
+      -^, $, ., [, ], *
+  Extended Regular Expressions (ERE)
+      BRE + (, ), {, }, ?, +, |
+
+Control characteres
+.       -- any single characters (.text) => atext, btext, 2text, ...
+^       -- beggining of the lin (^text) => text, textone, texttwo, ...
+$       -- end of the line ($text) => text, newtext, lasttext, ...
+\       -- escape character (.\.) => new.text, new.text2, ...
+
+Quantifiers
+?       -- match an element zero times or one time
+*       -- match an element zero or more times
++       -- match an element one or more time
+{}      -- match an element a specific number of times
+    -{n}        -- exactly n times
+    -{n,m}      -- at least n times, but not more than m times
+    -{n,}       -- n or more times
+    -{,m}       -- no more than m times
+    
 ==============================================================================
-								GREP CMD
+				GREP CMD
 ==============================================================================
 grep, egrep, fgrep			--searching text using regular expresions
 !env | grep variable1  --search through the environment variables
