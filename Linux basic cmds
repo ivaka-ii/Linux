@@ -19,6 +19,9 @@ Ex.: echo Dir1 > dir.txt
      echo Dir3 >> dir.txt
      cat dir.txt | xargs mkdir
 
+tac			-- concatenate nad print files in reverse
+
+
 						BASIC CLI COMMANDS
 cd	[options] [path]--changes directory
 cd ..				--goes one directory up
@@ -314,13 +317,27 @@ find [filename]			--this command searches the live filesystem
 !find /tmp -type f -user root		-- Find all files owned by particular user
 !find /tmp -type f ! -user root		-- Find all files which do not belong to particular user
 !find /tmp -type f -mtime 0 -ls		-- all files that are changed today
-more | less 			-- cmds after Pipeline
+Ex. find /etc -type f -size -200c -ls > small_etc_files.txt 	-- finds all files in directory smaller than 200 bytes and stores the output to file
+more | less 			-- cmds after Pipeline, shows output in pages
+"less is more"
+less				-- more advanced tool than more
 !durng more, less -h    -- gets help for the cmd.
 !while in more/less type "/[search argument]" --finds the needed argument ---n>next; N>previous; q>quit
 
 head [path to file]		--gives the first 10 lines of file's output
 tail -10 [path to file] > [file] - reads the last 10 lines from [path to file] and outputs them into [file]
+follow [file]			-- follows file if the file is 
+
 !head -n -20 /etc/passwd 	--specify how many lines is counted to cmd head
+
+uniq [file name]		-- report or omit/eliminates repeated lines
+sort [file]			-- sorts the output of a file in alphabetical and digit order
+wc [file]			-- word count --Print newline, word, and byte counts for each FILE, and a total line if more than one FILE is specified.
+				A word is a non-zero-length sequence of characters delimited by white space.
+nl -w 3				-- prints file with lines
+cut				-- remove section from each line of files
+Ex. cut -f 3 -d - doc3.txt | sort | uniq > locations.txt 	-- output the 3rd column with delimiter between text from file doc3.txt
+paste				-- joins the info rom two files
 
 ======================================================
           Regular expressions
@@ -363,6 +380,7 @@ grep <string> -B [number of lines] [file]	--shows required number of lines befor
 grep <string> -C [number of lines] [file]	--shows required number of lines before and after (in the middle) the searched string
 !grep 'sync' passwd		--single brackets match pattern anywhere on line
 !grep 'sync$' passwd	--$ match pattern in the end of the line
+!grep '^sync' passwd	--^ match pattern in he beginning of the line
 !grep '.y' passwd		-- "." matches any single character
 !egrep|grep -E 'sshd|root|operator' passwd --grep operate on extended mode to recognize the alternator operator
 !egrep 'no(b|n)' passwd -- alternation with a group to match a pattern
@@ -530,3 +548,85 @@ Execute in order (connected)
  Execute conditionally
     On Success: Command1 && command2    -- if command1 is 0, execute command2
     On Failure: command1 || command2    -- if command1 is error, execute command2
+
+======================================================
+                      VIM Shortcuts
+======================================================
+hjkl		-- move cursors replacing 
+Ctrl + b	-- move backward a page
+Ctrl + u	-- moves backwards a half page
+Ctrl + f	-- moves forward a page
+Ctrl + d	-- moves forward a half-page
+^		-- moves to the line start
+$		-- moves to the line end
+b		-- moves backward a word
+w		-- moves forward a word
+gg		-- moves to the first line
+G		-- moves to the last line
+15G or 15gg	-- moves to line 15
+
+:set number	-- turns one line numbers
+
+Insert mode
+-----------------------------------------------------------
+i		-- insert here
+I		-- insert at the beggining of the line
+a		-- append after current position
+A		-- append to the end of the line
+o		-- open a new line below
+O		-- open a new line above
+
+Replace mode
+------------------------------------------------------------
+r		-- replace one symbol under the cursor
+R		-- Enters in Replace mode
+Ex. :1,100 s/[search]/[replace]/g	-- replacing a string for the first 100 lines with "global" option
+
+Visual mode
+------------------------------------------------------------
+v
+V
+
+Deleting Text and lines
+-------------------------------------------------------------
+ :.,$d		-- deleting everything beyond the cursor to the end of the file
+ dgg		-- deletes everything from the cursor to the beginning of the file
+ 
+ Searching and replacing
+ ------------------------------------------------------------
+ Search only		-- Forward /string and backward ?string
+ Move between occurences n(same direction) and N (opposite)
+ 
+ Search and Replace Syntax
+ action/tofind/replacewith/modifier
+ Ex. First instance on the current line - :s/tcp/TCP
+     All instances on the current line - :s/tcp/TCP/g
+     All instances :%s/tcp/TCP/g
+     
+ Undo changes    
+ ------------------------------------------------------------
+ u		-- undo one change
+ :e!		-- re-read the file, discarding all changes
+ 
+ Save changes
+ ------------------------------------------------------------
+ :w		-- save the file
+ :wq		-- save and exit
+ :x		-- save nad exit
+ ZZ		-- save file and quit
+ 
+ :q		-- quit if no changes are made without save
+ :q!		-- quit without save
+ 
+ :w [filename]	-- save the text in another file
+ 
+vipw		-- edits the passwdord shadow-password file
+vigr		-- edits the group or shadow-group file
+!!!visudo	-- edits the sudoers file
+ 
+ ============================================================
+ 			SED
+ ============================================================
+ Stream editor for filtering and transforming text
+ 
+ EX.sed -n '1,100s/\//-/pg' [file1] > [file2]		--replaces special characters for specific lines and moves them to other file
