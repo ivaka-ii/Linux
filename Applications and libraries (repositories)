@@ -1,0 +1,73 @@
+Software components
+------------------------------------------------
+- Binaries
+- Libraries
+- Configuration
+- Documentation
+- Data
+
+Static vs Dynamic Linking
+------------------------------------------------
+Static linking libraries - the application uses it's own libraries, but  it is becoming larger in size
+Dynamic Linking 		-- the applications uses shared common libraries, thus they are smaller in size, but has dependencies
+
+!Problem One: hard to manage all files and locations, update and keep track of changes
+!Problem Two: More Spice & No dependency OR Less Space & Dependency Hell
+
+ldd /bin/ls				-- print shared object dependencies
+
+Packages and Packaging Systems
+------------------------------------------------
+- dependency tracking
+- easier installation and update
+Two main and widespread formats
+- rpm - Red Hat packages
+- deb - Debian packages
+Packages are available
+- locally as individual files
+- through local or remote repositories
+
+Packets can be:
+- source and binary
+- full, patch and delta
+Packets consist of:
+- compressed binary files
+- name and version of the packages's software
+- build date and host on which it was built
+- description of the package and its purpose
+- checksums and dependencies required
+
+RPM
+------------------------------------------------
+RPM stands for:
+- Package format
+- Package database
+- Package management tool
+with rpm we can install, update and remove local packages
+
+data is located in /var/lib/rpm
+in case of corruption it can be fixed by the root
+rpm --rebuilddb
+*only one user can access the database at a time
+* it is implemented .var/lib/rpm/.rpm.lock
+
+rpm -qa					-- query of all installed packages
+rpm -q [package name]	--query a specific installed package
+rpm -qip [package name].rpm	-- query local, but not installed package
+rpm -ql [package name]	-- list all files in a package
+rpm -qf [file path]		-- query for file dependency
+rpm -qc [package name]	-- find package configuration files
+rpm -ivh [package name].rpm		-- install specific package
+
+Package management are in low and higher level as high level repositories are:
+- Fedora family is using YUM(getting older) and DNF(newer)
+- Open Suse family is using Zypper
+
+
+Dpkg is the Debian's management tool
+with dpkg we can install, update and remove local packages
+For higher level of repositories - searching and downloading:
+- Pure text based - APT tools
+- Pseudo graphical - aptitude
+- Graphical - synaptic
+
