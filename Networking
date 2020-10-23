@@ -1,0 +1,13 @@
+======================================================
+                    Basic networking cmds
+======================================================
+ip...		-- network management , new one (ifconfig and route are depricated)
+ping, arp, arping, traceroute, tracepath, nmap 		--Testing network
+ss		-- monitoring network, netstat and  tcpdump are older 
+
+Common files
+------------------------------------------------------
+/etc/networks			--network name information
+/etc/resolf.conf		-- resolver configuration file
+/etc/hosts			-- static name resoution with IP-name pairs
+/etc/nsswitch.conf		-- name service switch configuration
