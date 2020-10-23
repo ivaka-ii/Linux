@@ -7,7 +7,77 @@ ss		-- monitoring network, netstat and  tcpdump are older
 
 Common files
 ------------------------------------------------------
-/etc/networks			--network name information
+/etc/networks			  --network name information
 /etc/resolf.conf		-- resolver configuration file
-/etc/hosts			-- static name resoution with IP-name pairs
-/etc/nsswitch.conf		-- name service switch configuration
+/etc/hosts			    -- static name resoution with IP-name pairs
+/etc/nsswitch.conf	-- name service switch configuration
+
+Network Manager
+-------------------------------------------------------
+Service is NetworkManager.service
+Tools:
+-nmcli
+-nmtui
+Configuration files's location:
+/etc/NetworkManager/*
+/etc/sysconfig/network-scripts/*
+
+SystemD Network
+-------------------------------------------------------
+Service is systemd-networkd.service
+Tools:
+-nnetworkctl
+Configuration files's location:
+/etc/networkr/*
+/etc/systemd/network/*
+
+Wicked(Suse)
+-------------------------------------------------------
+Service is wickedd.service
+Tools:
+-wicked
+Configuration files's location:
+/etc/wicked/*
+/etc/sysconfig/network/*
+
+Netplan (Ubuntu)
+-------------------------------------------------------
+-> after Ubuntu 16.04, but default since Ubuntu 17.10
+- supports Network Manager and netwokd
+- network structure is described as YAML
+Configuration files's location:
+/etc/netplan/*
+
+Networking commands
+-------------------------------------------------------
+hostnamectl     -- controls system hostname
+arp             --manipulate or display system ARP cache
+arping          -- we can ping for MAC address within our network
+!Ex. arping -c 4 192.168.1.1       -- ping MAC address with 4 packets
+
+ip a                                --ip address show
+hostnamectl set-hostname [name]     -- changes the hostnamectl with the new name
+
+nmcli connection show               -- shows all available and working connecions
+
+IP adding of network interface
+--------------------------------------------------------
+ip a add [ip address/subnet mask] dev [interface name]  --adds ip address to specified interface
+nmcli connection add type ethernet ifname [interface name] con-name [shown interface name]
+we have to stop and start the service IOT IP to be permanently available
+
+Stopping network interface
+--------------------------------------------------------
+With nmcli: nmcli device disconnect [interface name]        --disconnects network interface
+With nmtui
+
+systemctl status NetworkManager     -- shows status of the NetworkManager
+ls -al /etc/sysconfig/network-scripts/ifcfg             -- shows the configuration system files
+[ip address/subnet mask] ipv4.method manual
+nmcli connection modify [interface name] ipv4.address [ip address/subnet mask] ipv4.method manual
+
+Starting network interface
+--------------------------------------------------------
+With nmcli: nmcli con up id [interface name]                --connects the network device
+With nmtui
+
