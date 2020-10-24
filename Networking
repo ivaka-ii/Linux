@@ -81,3 +81,10 @@ Starting network interface
 With nmcli: nmcli con up id [interface name]                --connects the network device
 With nmtui
 
+======================================================
+                    Firewall
+======================================================
+Fedora distros are using firewalld
+
+Firewalld
+------------------------------------------------------
