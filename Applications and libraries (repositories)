@@ -51,6 +51,8 @@ rpm --rebuilddb
 *only one user can access the database at a time
 * it is implemented .var/lib/rpm/.rpm.lock
 
+RPM commands
+----------------------------------------------------------------------
 rpm -qa					-- query of all installed packages
 rpm -q [package name]	--query a specific installed package
 rpm -qip [package name].rpm	-- query local, but not installed package
@@ -58,6 +60,8 @@ rpm -ql [package name]	-- list all files in a package
 rpm -qf [file path]		-- query for file dependency
 rpm -qc [package name]	-- find package configuration files
 rpm -ivh [package name].rpm		-- install specific package
+rpm -e package-[version]-[release]		-- remove specific package with specific version
+
 
 Package management are in low and higher level as high level repositories are:
 - Fedora family is using YUM(getting older) and DNF(newer)
@@ -70,4 +74,133 @@ For higher level of repositories - searching and downloading:
 - Pure text based - APT tools
 - Pseudo graphical - aptitude
 - Graphical - synaptic
+
+YUM
+------------------------------------------------------------
+Yellowdog Updater Modified
+Used by most of thre RH based distros
+Related files:
+-Main configuration /etc/yum.conf
+-Repositories /etc/yum.repos.d/*.repo
+-Cache files /var/cache/yum
+-Log file /var/log/yum.log
+Replaced by DNF(dandified yum) in Fedora 22+
+
+YUM cmds:
+yum list				--list all packages in the enabled repoitories
+yum list [package]		--search for specific package
+yum list http*			-- search for all packages starting with a word
+yum search [string]		-- search package details for a given string
+yum info [package]		-- display info httpd
+yum group list			-- list available groups
+
+yum install [package]		--installs a package
+yum -y install [package] [package]	-- installs two packages without confirmation
+yum groups install "GNOME Desktop" 	-- install group of packages
+yum update					--updates the whole system
+yum update [package]		-- updates specific package
+yum clean 					-- removes cached data
+yum eraze [package]			-- remove installed package
+yum groups erase "GNOME Desktop" 	-- removes group of packages
+
+EPEL repository
+------------------------------------------------------------
+Extra packages for Enterprise Linux (EPEL)
+
+yum install epel-release			-- installs EPEL
+
+ZYPPER
+------------------------------------------------------------
+Used by openSUSE based distributions
+CLI(Zypper) and package manager (ZYpp and libzypp)
+Related files:
+-configuration /etc/zypp/zypper.conf and /etc/zypp/zypp.conf
+-repositories /etc/zypp/repos.d/*.repo
+-cache files /var/cache/zypp
+-log file /var/log/zypper.log and /var/log/zypp/history
+
+ZYPPER cmds:
+zypper [packages]			-- list all available packages in the enabled repositories
+zypper info [package]		-- search for specific package
+zypper info http*			-- search for all packages starting with a word
+zypper what-provides [string]		-- search packages by a specific word
+
+zypper install [package]	-- installs package
+zypper remove [package]		-- remove a package
+zypper update				-- updates a package
+zypper dist-upgrade			-- perform distribution upgrade
+zypper repos				-- list all defined repositories
+zypper addrepo -r repository.repo	-- adds a new repository
+zypper removerepo [package]		-- remove specified repository
+zypper refresh				-- refresh all repositories
+
+!groups from yum here is called "patterns"
+zypper patterns				-- list all defined patterns
+zypper install -t pattern [name] 		-- installs a pattern
+zypper remove -t pattern [name] 		-- removes a pattern
+zypper clean --all						-- clean both metadata and package caches
+
+DEB Database
+---------------------------------------------------------------
+Colection of files and folders
+Data is located in /var/lib/dpkg
+In case of corruption it can be fixed by following a procedure only one user can write to the database at a time
+It is implemented through lock file /var/lib/dpkg/lock
+Source and binary
+ar archive file consisting of three parts:
+-header - debian-biunary
+-control archive - control.tar.{gzip,xz}
+-data archive - data.tar.{gzip,bzip,lzma,xz}
+
+dpkg commands:
+dpkg --list			-- lists currently installed packages
+dpkg --status [package]		--print information about installed package
+dpkg --listfiles [package]		--list installed files associated with a package
+dpkg --search [file path]		--locate package that own a file
+
+sudo dpkg --install package.deb		--install specific package
+sudo dpkg -- remove [package]		-- remove a packae but leave the configuration files
+sudo dpkg -- purge [package]		-- remove a packae with the configuration files
+sudo dpkg --configure package		-- reconfigure installed package
+
+Apt
+---------------------------------------------------------------
+Command line package manager
+Used by Debian based distributions
+Handles search, install, remove and update of packages 
+Offers options more suitable for interactive use
+Configuration is stored in /etc/apt/*
+
+apt cmds:
+apt list apache* php*		--list all available packages on package name
+sudo apt install [package] [package]		-- install a package
+sudo apt remove [package]		-- removes a package
+sudo apt update				--update list of available packages
+
+apt list --upgradeable		--get list of packages with available upgrades
+apt show [package]			-- show package details
+sudo apt upgrade			-- upgrades the system
+sudo apt edit-sources		--edit the source information file
+
+apt-*
+---------------------------------------------------------------
+Used by debian based distributions
+It runs on top of APT
+it is a lower level tool compared to aptitude and synaptics
+The package includes tools for
+- installation , updateand removal of packages - apt-get
+- package searching	-apt-cache
+- key management - apt-key
+- configuration management - apt-config
+
+apt-* cmds:
+apt-cache stats				--list cache statistics
+apt-cache search [package]		--search of package
+apt-key list				-- list stored keys
+sudo apt-key add docker.gpg		-- adds key
+sudo apt-key remove [KEY reg]	-- remove installed key
+apt-cache policy			-- list configured repositories and their priorities
+sudo apt-add-repository [link to repository]	--add repository
+sudo apt-add-repository -r [link to repository]		-- remove repository
+
 
