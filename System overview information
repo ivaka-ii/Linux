@@ -65,5 +65,68 @@ Ex.: $cat missing.txt > out.txt 2>&1
 #different conmpared to
      $cat missin.txt 2>&1 > out.txt
 
+======================================================
+        LILO (Linux Loader)
+======================================================
+LILO (Linux Loader) is a boot loader for Linux. It is used to load Linux into memory and start the operating system. 
+LILO can be configured to boot other operating systems as well. LILO is customizable, i.e., if the default configuration is not correct, it can be changed. 
+The config file for LILO is lilo.conf. LILO is also a code snippet that loads PC BIOS into the main memory at the time of starting the computer system.
 
+It handles the following tasks:
+
+Locating Linux kernel
+Identifying other supporting programs and loading them in memory
+Starting the kernel
+The selection of various Kernel images and boot routines is supported by LILO. For this reason, it is known as the boot manager.
+
+======================================================
+        Network Bonding in Linux
+======================================================
+Below is the list of various modes used in Network Bonding:
+
+balance-rr or 0:        The round-robin mode for fault tolerance and load balancing
+active-backup or 1:     Sets the active-backup mode for fault tolerance
+balance-xor or 2:       Sets an XOR (exclusive-or) mode for fault tolerance and load balancing
+broadcast or 3:         Sets a broadcast mode for fault tolerance. All transmissions are sent on all the slave interfaces
+802.3ad or 4:           Sets an IEEE 802.3ad dynamic link aggregation mode and creates aggregation groups that share the same speed and duplex settings
+balance-tlb or 5:       Sets a transmit load balancing (TLB) mode for fault tolerance and load balancing
+balance-alb or 6:       Sets an active load balancing (ALB) mode for fault tolerance and load balancing
     
+======================================================
+                    VIM
+======================================================
+vim Modes       -- Normal (command), navigation
+                -- Command (last line mode)
+                -- Insert/replace (edit)
+                -- Visual
+        
+======================================================
+                    Naming network Rules
+======================================================
+for Current naming (enp0s3)
+-en     -- Ethernet
+-wl     -- WLAN wireless LAN
+-ww     -- Wireless wide area network (WWAN)
+
+-name types
+    -o<index>       --On-board device index number
+    -s<slot>[f<function>][d<dev_id>]        --Hotplug slot index number
+    -x<MAC>          -- MAC address
+    -p<bus>s<slot>[f<function>][d<dev_id>]   -- PCI geographical location
+    
+======================================================
+                    NETWORKING
+======================================================
+Generl info
+-------------------------------------
+Network manager, system D Network or Wicked
+
+======================================================
+              Working with configuration files
+======================================================
+Usually they are in /etc directory
+contain many comments with default and possible values
+Good practices:
+- before star making any changes make a copy
+- good practice is to add an extension: file.conf -> file.conf.bak
+- compare spaces, line ends, and structure with the original file
