@@ -1,0 +1,51 @@
+===================================================================
+					GRUB Configuration
+===================================================================
+Grub configuration file is located at /etc/default/grub
+
+we can configure some or many of the following items:
+GRUB_TIMEOT=60				--sets the waiting timer of the boot loader/manager to 60 secs
+remove 'quiet' from GRUB_CMDLINE_LINUX otion		-- shows all the processes when we start the system
+
+!After making changes in /etc/default/grub, we have to save the file and execute the following cmd:
+grub2-mkconfig -o /bppt/grub2/grub.cfg
+
+===================================================================
+					Kernel
+===================================================================
+Kernel buffer ring represents all the loaded components of the kernel in order for the OS to proceed
+
+dmesg -H | sort -r > boot_extract.txt		-- extracts the processes from the kernel buffer and forward them to a file in reversed
+											(from earliest to latest)
+
+===================================================================
+					Systemd
+===================================================================
+
+systemd-analyze 						-- initialize for how much time system is started
+systemd-analyze blame					-- shows the separate processes 
+systemd-analyze dot						-- shows system initialization in graphical way
+										(in most cases we have to view it with graphical services)
+
+===================================================================
+					Pstree
+===================================================================
+pstree									-- shows tree of processes
+
+pstree -p								-- shows processes with their PIDs
+
+===================================================================
+					Shutdown
+===================================================================
+Shutdown is cmd for shutting down the system
+
+shutdown -P	+[minutes] "Message"	--shuts down system in placed minutes
+									"Message" is optional for all the users
+
+
+===================================================================
+					Monitoring tools
+===================================================================
+vmstat						-- shows system resources usage, processor, swap and etc.
+pidstat						-- shows how much processes are using from memory
+iostat						-- shows input/output statistics of the hard disk drives on the system
