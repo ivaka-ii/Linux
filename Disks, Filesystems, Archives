@@ -1,1 +1,197 @@
- 
+=================================================================
+    		FILESYSTEM HIERARCHY STANDARTS
+=================================================================
+/home				-- variable and shareable, contains user data
+/root				-- home directory for root user
+/var				-- variable and partly shareable; contains logs, mail spool
+/tmp				-- variable and temporary content
+/mnt				-- used for mounting of removable media
+/media				--similar to /mnt, but contains subfolders for different media
+/dev				-- files, used as interface to the underlying hardware
+/proc				-- virtual filesystem that reflects kernel and process status
+
+=================================================================
+    		DISK AND PARTITION SCHEMES
+=================================================================
+Disk Types
+-----------------------------------------------------------------
+Parallel ARA (PATA) 128 - 1064 Mbps
+-looks like /dev/hd[x]
+Serial ATA 1,5 - 6 Gbps
+-looks like /dev/sd[x]
+SCSI small computer system interface
+/dev/sd[x] for CD/DVD - /dev/sd[symbol or numer]
+
+Partitioning
+-----------------------------------------------------------------
+MB 		--1000^2 megabyte
+MiB		--1024^2 mebibyte
+
+Special partition types:
+RAW partitions
+-no regular file system
+-used for special purposes, i.e. enterprise databases
+-better controw and performance
+SWAP partitions		-- when the system don't have enough RAM memory, it transfers the processes into SWAP partitions
+-no further separations
+-no regular file system
+-1-2x RAM size*
+
+Common partitions and filesystem layouts:
+Could be separated:
+-/boot
+-/home
+-/opt
+-/var
+-/tmp
+Should be together:
+/etc, /bin, /sbin, /lib, /lib64, /dev and /usr*
+
+
+Master Boot Record(MBR)
+-----------------------------------------------------------------
+Characteristics
+-occupies first 512 bytes
+-up to 4 primary partitions
+-max size - up to 2TiB/partition
+Partition types
+-primary
+-extended - can have multiple logical drives
+-logical
+
+GUID partition Table (GPT)
+-----------------------------------------------------------------
+Characteritics
+-Part of EFI specifications
+-has protective MBR
+-two copies of the partition table
+-up to 128 partitions
+-maximum size 8ZiB/partition
+
+lsblk
+fdisk 			-- for MBR partitioning table
+fdisk /dev/[harddisk]
+gdisk			-- for GPT partitioning table
+parted
+dd
+dd if(input file)=[disk partition]/file of=[disk partition] bs(lock size)=[number][M,K,B] count=[1,2,3...]
+mkswap
+swapon
+swapoff
+
+=================================================================
+    		FILE SYSTEMS
+=================================================================
+Extendded file system Ext(2|3|4)
+----------------------------------------------------------------
+Version 2 - no journaling
+Version 3 - journaling added
+Version 4 - still in active use
+- max volume size 1 EiB
+- max file size 16 TiB
+- max filename lenght - 255 bytes
+- backward compatible with ext3 and ext2
+
+tune2fs
+---------------------------------------------------------------
+adjust file system parameters on ext2/ext3/ext4
+
+dumpe2fs
+---------------------------------------------------------------
+Dump ext2/ext3/ext4 file system information
+
+resize2fs
+---------------------------------------------------------------
+Resize ext2/ext3/ext4 file system
+
+----------------------------------------------------------------
+Extents file system xfs
+----------------------------------------------------------------
+Max volume size:8 Eib
+Max file size: 8 EiB
+Max filename lenght - 255 bytes
+Features:
+-Journaling
+-online defragmentation
+-online resizing
+
+xfs_info
+xfs_growfs
+xfs_admin
+
+btrfs
+---------------------------------------------------------------
+Max volume size:16 Eib
+Max file size: 16 EiB
+Max filename lenght - 255 bytes
+Features:
+-Journaling
+-online defragmentation
+-online growth and shrinking
+-transparent conmpresion
+-snapshots
+
+mkfs[.xxx]
+---------------------------------------------------------------
+Build a Linux file system
+mkfs [options] device		-- creates the device(partition) in the desired filesystem
+
+mount
+---------------------------------------------------------------
+mount a file system
+mount [options] device directory
+!we have to mount a filesystem in empty directory, when we mount a device, we are changing the directory purpose
+
+umount
+
+blkid
+---------------------------------------------------------------
+Locate or print block device attributes
+
+---------------------------------------------------------------
+Logical volume manager(LVM)
+---------------------------------------------------------------
+combines the phisical partitions into volume groups 
+Volume groups can be separated into Logical volumes
+Logical volumes can be formatted into file systems 
+
+LVM tools
+---------------------------------------------------------------
+pvscan				--scans all disks for physical volumes
+pvs					-- reports information about physical volumes
+pvcreate			-- initialize a disk or partition for use by LVM
+vgscan				
+vgs
+vgcreate			-- creates a volume group
+vgcreate [options] group-name device		--
+
+vgextend			-- adds physical volumes to a volume group
+
+lvscan				-- scans all volumes in logical group
+lvs					--  report information about logical volumes
+lvcreate			-- creates a logical volume in an existing volume group
+lvcreate [options] [lv-name] [options] [vg-name]		--creates logical volume in an existing volume group
+!Ex.lvcreate -n lv1 -L 500m vg1			--create logical volume with name "lv1" with size of 500mb
+lvextend [options] -L +100m [lv's path]		-- extends the size of the lv
+!Ex. lvextend -L +100m /dev/vg1/lv1			-- increases the size of the "lv1" with 100m
+
+
+=================================================================
+    		ARCHIVING AND BACKUP
+=================================================================
+			-c(create)			   +z(gzip)
+tar 		-t(list)   +v(verbose) +j(bzip2) +f (filename) [directory location which will be archived] 
+			-(expand)			   +J(xz)
+Ex. tar -czvf [filename].tar.gz /etc 		-- creating archive file
+
+.tar -cvf			--TAR archive
+.zip -ry			--ZIP archive
+.tar.gz -cvzf		--GZIP archive
+.tar.bz2 -cvjf		--BZIP2 archive
+.tar.xz	-cvJf		--XZ archive
+
+=================================================================
+    		PROC
+=================================================================
+Folder, that consist of files, representing the process environment or how the system is seeing the 
+system processes. We can interact with running system session. The folder is temporary.
