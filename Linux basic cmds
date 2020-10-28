@@ -19,8 +19,9 @@ Ex.: echo Dir1 > dir.txt
      echo Dir3 >> dir.txt
      cat dir.txt | xargs mkdir
 
-tac			-- concatenate nad print files in reverse
+tac			-- concatenate and print files in reverse
 
+diff [file1] [file2]	-- shows difference from file1 and file2 line by line
 
 						BASIC CLI COMMANDS
 cd	[options] [path]--changes directory
