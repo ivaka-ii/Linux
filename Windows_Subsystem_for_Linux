@@ -1,0 +1,14 @@
+WSL is an optional feature in Windows 10
+We can run Ubuntu, Fedora and openSUSE on Windows using WSL feature, and more Linux distributions coming soon.
+!This feature is not working on 32-bit version on Windows 10, so ensure you're using the 64-bit version of Windows.
+Advantage: We can access Windows files in bash, and Bash files in Windows.
+
+Start -> Turn Windows features on and off --> Windows Subsystem for Linux -->restart
+
+From Microsoft store --> install chosen distribution
+
+From start --> it will give you the distribution terminal
+
+Enter user and password
+
+You are GOOD to go!
