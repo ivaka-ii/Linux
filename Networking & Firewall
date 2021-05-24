@@ -127,3 +127,6 @@ sudo ufw allow [port number]/[protocol]		-- allow port rule
 sudo ufw allow OpenSSH comment 'allow ssh app'		-- allow application rule
 sudo ufw reload			-- reload firewall configuration
 
+=====================================================
+dig +short myip.opendns.com @resolver1.opendns.com    --shows your public IP from Linux cmd line
+dig TXT +short o-o.myaddr.l.google.com @ns1.google.com | awk -F'"' '{ print $2}'    --same command
