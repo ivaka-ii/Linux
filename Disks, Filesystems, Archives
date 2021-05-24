@@ -195,3 +195,8 @@ Ex. tar -czvf [filename].tar.gz /etc 		-- creating archive file
 =================================================================
 Folder, that consist of files, representing the process environment or how the system is seeing the 
 system processes. We can interact with running system session. The folder is temporary.
+
+=================================================================
+    		RAM memory
+=================================================================
+free -mh	--shows RAM memory resources
