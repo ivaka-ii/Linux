@@ -1,0 +1,24 @@
+=================================================================
+    		SSH connectivity around anywhere
+=================================================================
+https://dev.to/zduey/how-to-set-up-an-ssh-server-on-a-home-computer
+
+ps -A | grep sshd       --checks the SSH server process that it's running on the device
+
+ifconfig    --checks the available IP addreses
+
+
+!!!dig +short myip.opendns.com @resolver1.opendns.com    --cmd that checks PUBLIC IP Address
+
+
+https://canyouseeme.org/    --good site to check IP address and ports
+
+Generate Public/private keys on host
+-------------------------------------
+https://help.ubuntu.com/community/SSH/OpenSSH/Keys#keys-with-specific-commands
+
+
+=================================================================
+    		SSH with ppk file
+=================================================================
+https://askubuntu.com/questions/818929/login-ssh-with-ppk-file-on-ubuntu-terminal
