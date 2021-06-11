@@ -189,7 +189,7 @@ q					--Completely closes help screen
 whereis [command]	--shows the path of the command or man pages and where is located
 !Man pages are normally easily distinguished between commands as they are normally compressed 
 with a command called gzip, resulting in a filename that ends in .gz
-locate [name of file]   -- to find any file or directory throughot the system;
+locate [name of file]   -- to any file or directory throughot the system;
 !locate works only if you are system administrator (root user),
 						or it is limited due to file permisions;
 udatedb				--updates db (only admin can perform this)
@@ -318,6 +318,9 @@ find [filename]			--this command searches the live filesystem
 !find /tmp -type f -user root		-- Find all files owned by particular user
 !find /tmp -type f ! -user root		-- Find all files which do not belong to particular user
 !find /tmp -type f -mtime 0 -ls		-- all files that are changed today
+
+!!!find / -type f -exec grep -H 'text-to-find-here' {} \; 		--Cmd that finds specific text into all files (do with sudo)
+
 Ex. find /etc -type f -size -200c -ls > small_etc_files.txt 	-- finds all files in directory smaller than 200 bytes and stores the output to file
 more | less 			-- cmds after Pipeline, shows output in pages
 "less is more"
