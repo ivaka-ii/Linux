@@ -43,9 +43,27 @@ Configuration files:
 BOOT Loader -> KERNEL (drivers) and INITRD(initial ram drive) -> INIT Process (process manager) -> USER PROGRAMS 
 
 ======================================================
-                initialization methods
+                Systemd
 ======================================================
-Sys
+Systemd is these working units that are responsible for init scripts
+-units are the new init scripts
+-unit is a file representing system component information
+-Naming convention      --"unit name". "unit type"
+Location:
+-installed by the distribution  -- /usr/lib/systemd/system/*
+-installed by runtime   --  /run/systemd/system/*
+-custom     --  /etc/systemd/system/*
+
+Service units       -- ".service"-extention     --Describes how to manage service or application
+Target              -- ".target"-extention      --Provides synchronisation point for other units for booting and changing states
+!example of service         -- /usr/lib/systemd.system/sshd.service -- vim and see config settings
+
+Correspondence between runlevel and target: There are 7 runlevels 
+
+Cmds regarding systemd:
+$systemd-analyze blame     -- checks what is causing the system to run slow
+$systemd-analyze critical-chain     --print tree of time-critical  chain of units
+
 ======================================================
                 User components
 ======================================================
