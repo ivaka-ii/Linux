@@ -64,6 +64,16 @@ Cmds regarding systemd:
 $systemd-analyze blame     -- checks what is causing the system to run slow
 $systemd-analyze critical-chain     --print tree of time-critical  chain of units
 
+              journalctl
+-----------------------------------------------------
+journalctl [output] [matches]    -- gives output of queries on the system
+
+halt          --stops the machine
+shutdown [options] [time] [wall]      --shutdowns the machine
+wall [-n] ['message']           --sends everybody message for shutting down the system
+
+
+
 ======================================================
                 User components
 ======================================================
