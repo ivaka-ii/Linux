@@ -457,10 +457,11 @@ Jeri Wallen, 456-78-9012
 cp [source path] [destination path] -- copy file command
 cp *.txt [destination path]	-- copies all files with '.txt' to destination
 
-cp [file] [destination path] -pv --preserve,verbose	-- copies file to 
-									destination with saving the ownership of the file
-cp [directory] [destination path] -Rv --recursively,verbose --copy all files
-										from 1 directory to another
+cp [file] [destination path] -pv --preserve,verbose	-- copies file to destination with saving the ownership of the file
+cp [directory] [destination path] -Rv --recursively,verbose --copy all filesfrom 1 directory to another
+
+!scp -P [port_number] [username]@[localhost/port]:[path_to_file] [destination path of current system]		-- securely copies the file from one location to another
+
 
 rm -i [file]				-- prompt before remove of file
 
