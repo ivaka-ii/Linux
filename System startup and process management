@@ -34,11 +34,61 @@ systemd-analyze plot > [file].svg	--saves the chart in .svg file
 systemd-analyze critical-chain		-- shows tree of starting processes	
 
 ===================================================================
-					Pstree
+					Jobs
 ===================================================================
+Jobs are processes that have their onw adress space
+jobs [option] [jobspec]		-- shows current running jobs
+
+fg	-- moves jobs to foreground
+bg	-- moves jobs to backgroung
+
+===================================================================
+					Ps and top, kill
+===================================================================
+ps [options]		-- report a snapshot of current processes
 pstree									-- shows tree of processes
 
+ps l 		-- shows more detailed information of the processes running on the system
+
 pstree -p								-- shows processes with their PIDs
+pgrep [options] pattern		--lookup processes based on name and other attributes shows the PID of it
+
+top		-- gives output to all the processes in the system
+!top -d 2 -n 5 -u madmin	--display madmin processes with 2 sec delay 5 times
+htop		-- displays all processes in interacive mode
+htop -d 100	-- start htop with interval of 10 seconds
+
+kill [options] pid | jobspec
+kill -9 1302	-- send sigkill to a process with PID=1302
+killall
+pkill
+
+		nice & renice
+-------------------------------------------------------------------
+nice 	-- priority of niceness while starting a program
+nice [option] [command [arg]]		--run a program with modified scheduled priority
+!nice -n 15 [program]			--start program with particular niceness
+renice		-- alter priority of already running program
+
+
+		free
+-------------------------------------------------------------------
+Display amount of free and used memory in the system
+free [options]
+free -h 		-- display information in HReadable format
+free -c 5 -s 10		-- display information with 10 sec delay of 5 times
+
+		df
+-------------------------------------------------------------------
+Reports file system disk space usage
+df [options] [file]
+df -h /dev/sda2		-- displays information about particular file
+
+		du
+-------------------------------------------------------------------
+estimate disk usage
+du [options] [file]
+du -h -d 1 / 		--display space usage for first level of folders
 
 ===================================================================
 					Shutdown
