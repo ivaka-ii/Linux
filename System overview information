@@ -61,17 +61,32 @@ Target              -- ".target"-extention      --Provides synchronisation point
 Correspondence between runlevel and target: There are 7 runlevels 
 
 Cmds regarding systemd:
-$systemd-analyze blame     -- checks what is causing the system to run slow
-$systemd-analyze critical-chain     --print tree of time-critical  chain of units
-
+$systemd-analyze blame     -- checks what is causing the system to run slow(shows time outcome for all the services to load)
+$systemd-analyze critical-chain     --print tree of time-critical  chain of units (shows tree of the start of all processes)
+systemd-analyze         --gives output of the system processes
               journalctl
 -----------------------------------------------------
+Journalctl gives the logs to all the changes made in the system
 journalctl [output] [matches]    -- gives output of queries on the system
+journalctl --reverse            --shows the reverse processes that happened on the OS
+!!!journalctl --reverse _SYSTEM_UNIT=[service]      --shows all the events regarding the given service
 
 halt          --stops the machine
 shutdown [options] [time] [wall]      --shutdowns the machine
 wall [-n] ['message']           --sends everybody message for shutting down the system
 
+======================================================
+                Systemctl
+======================================================
+systemctl status        --shows tree output of system 
+
+systemctl show [service]        --shows list of parameters of [service]
+
+systemctl isolate runlevel1.target      -- isolates the runlevel system to 1, most of the services are disabled (you just have to had physical access to system)
+
+systemctl get-default     -- shows the default target of the system
+systemctl list-units      -- shows list of units
+systemctl list-units --type target      --list of all active targets
 
 
 ======================================================
