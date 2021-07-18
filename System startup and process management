@@ -26,6 +26,9 @@ systemd-analyze 						-- initialize for how much time system is started
 systemd-analyze blame					-- shows the separate processes 
 systemd-analyze dot						-- shows system initialization in graphical way
 								(in most cases we have to view it with graphical services)
+
+systemd-analyze dot [service name] | dot T[fileoutput] > [filename]	-- makes dot graph into given output into filename
+
 systemd-analyze plot		-- shows systemstart in vector way
 systemd-analyze plot > [file].svg	--saves the chart in .svg file
 systemd-analyze critical-chain		-- shows tree of starting processes	
