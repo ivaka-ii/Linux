@@ -2,47 +2,6 @@ Linux is monolithic system, which runs its kernel to operate.
 Linux is modular overall.
 
 ======================================================
-                System components
-======================================================
-1. Boot loader          -- 
-2. Boot manager         -- stand above boot loader, gives us choise which kernel should be loaded on the machine
-3. Kernel               -- the core of the OS and manages the hardware
-*Process - The running programs that the kernel manages.
-*Kernel space - The area of the memory that only the kernel can access
-*User space   - The main memory allocated by the kernel for user processes
-
-======================================================
-                Boot loaders
-======================================================
-LILO - Linux loader
--old, very rare these days
-GRUB - GNU Grand Unified Boot Loader
--configurable, default on most distributions
-SYSLINUX 
-- used for installation, live, or rescue media
-Loadlin (Load Linux)
-- used for booting from non-Linux OS
-
-======================================================
-                GRUB2
-======================================================
-Highly configurable
-Supports many operating systems
-Interactive and default OS selection
-Temporal configuration change
-Integrated command prompt
-Configuration files:
-/etc/default/grub
-/etc/grub.d/*
-/etc/grub2.cfg
-!resulting files"
-/boot/grub2/grub.cfg
-/boot/grub2/grubenv
-! if we make change we have to reconfig the config files and then the result will be present in the result files
-
-BOOT Loader -> KERNEL (drivers) and INITRD(initial ram drive) -> INIT Process (process manager) -> USER PROGRAMS 
-
-======================================================
                 Systemd
 ======================================================
 Systemd is these working units that are responsible for init scripts
@@ -87,6 +46,48 @@ systemctl isolate runlevel1.target      -- isolates the runlevel system to 1, mo
 systemctl get-default     -- shows the default target of the system
 systemctl list-units      -- shows list of units
 systemctl list-units --type target      --list of all active targets
+systemctl cat [service]   --gives additional information about service
+
+======================================================
+                System components
+======================================================
+1. Boot loader          -- 
+2. Boot manager         -- stand above boot loader, gives us choise which kernel should be loaded on the machine
+3. Kernel               -- the core of the OS and manages the hardware
+*Process - The running programs that the kernel manages.
+*Kernel space - The area of the memory that only the kernel can access
+*User space   - The main memory allocated by the kernel for user processes
+
+======================================================
+                Boot loaders
+======================================================
+LILO - Linux loader
+-old, very rare these days
+GRUB - GNU Grand Unified Boot Loader
+-configurable, default on most distributions
+SYSLINUX 
+- used for installation, live, or rescue media
+Loadlin (Load Linux)
+- used for booting from non-Linux OS
+
+======================================================
+                GRUB2
+======================================================
+Highly configurable
+Supports many operating systems
+Interactive and default OS selection
+Temporal configuration change
+Integrated command prompt
+Configuration files:
+/etc/default/grub
+/etc/grub.d/*
+/etc/grub2.cfg
+!resulting files"
+/boot/grub2/grub.cfg
+/boot/grub2/grubenv
+! if we make change we have to reconfig the config files and then the result will be present in the result files
+
+BOOT Loader -> KERNEL (drivers) and INITRD(initial ram drive) -> INIT Process (process manager) -> USER PROGRAMS 
 
 
 ======================================================
