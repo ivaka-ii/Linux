@@ -3,10 +3,14 @@
 =================================================================
 /home				-- variable and shareable, contains user data
 /root				-- home directory for root user
+/bin				-- critical executable files
+/sbin				-- similar to bin, but contains programs usually executed by root
+/lib				-- contains program libraries
+/usr				-- shareable and static. Host binaries, libraries and documentation
 /var				-- variable and partly shareable; contains logs, mail spool
 /tmp				-- variable and temporary content
 /mnt				-- used for mounting of removable media
-/media				--similar to /mnt, but contains subfolders for different media
+/media				-- similar to /mnt, but contains subfolders for different media
 /dev				-- files, used as interface to the underlying hardware
 /proc				-- virtual filesystem that reflects kernel and process status
 
