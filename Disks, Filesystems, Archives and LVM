@@ -200,3 +200,20 @@ system processes. We can interact with running system session. The folder is tem
     		RAM memory
 =================================================================
 free -mh	--shows RAM memory resources
+
+========================================================
+                  LVM
+========================================================
+https://fedoramagazine.org/reclaim-hard-drive-space-with-lvm/
+
+LVM implementation:
+----------------------------------------
+Зависи ти типът шина
+След това типът носител
+LVM е вид софтуер. Какво изисква той?
+Чак като имаш LVM правиш файлова система
+
+========================================================
+                  VDO(Virtual disk optimizer)
+========================================================
+https://youtu.be/bsERRxQ8S6c
