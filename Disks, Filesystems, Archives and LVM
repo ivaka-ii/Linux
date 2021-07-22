@@ -24,7 +24,7 @@ Parallel ARA (PATA) 128 - 1064 Mbps
 Serial ATA 1,5 - 6 Gbps
 -looks like /dev/sd[x]
 SCSI small computer system interface
-/dev/sd[x] for CD/DVD - /dev/sd[symbol or numer]
+/dev/sd[x] for CD/DVD - /dev/sr[symbol or numer]
 
 Partitioning
 -----------------------------------------------------------------
@@ -72,16 +72,35 @@ Characteritics
 -up to 128 partitions
 -maximum size 8ZiB/partition
 
-lsblk
+Special partition Types
+-----------------------------------------------------------------
+RAW Partitions		- used directly from software that don't require any filetypes (i.e. enterprise databases)
+    - no regular file system
+    - better control and performance
+SWAP Partitions(can be also partition)
+    - no further separation
+    - no regular file system
+    -1-2x RAM size 
+	
+
+lsblk			-- list block devices
 fdisk 			-- for MBR partitioning table
 fdisk /dev/[harddisk]
 gdisk			-- for GPT partitioning table
-parted
-dd
-dd if(input file)=[disk partition]/file of=[disk partition] bs(lock size)=[number][M,K,B] count=[1,2,3...]
-mkswap
-swapon
-swapoff
+parted			-- partition manipulation program
+dd			-- copy a file, converting and formatting according to the operands
+dd if(input file)=[disk partition]/[device] of=[disk partition] bs(block size)=[number][M,K,B] count=[1,2,3...]
+mkswap			-- Setup a Linux swap area
+	- mkswap [options] device [size]
+!#mkswap -L SWAP-2 /dev/sdb2
+swapon		-- enables devices and files for paging and swapping
+!#swapon -s
+!#swapon -p 5 -v /dev/sdb11		-- enables a device for swapping with priority of 5
+swapoff		-- disables devices and files for paging and swapping
+swapoff [options] [device]
+!#swapoff -a -v		-- disable all swap devices and files
+!#swapoff -v /dev/sdb11		--turn off particular device
+
 
 =================================================================
     		FILE SYSTEMS
@@ -95,6 +114,11 @@ Version 4 - still in active use
 - max file size 16 TiB
 - max filename lenght - 255 bytes
 - backward compatible with ext3 and ext2
+
+!!!Most common file systems:
+86 NTFS voolume set da
+87 NTFS volume set db
+8e Linux LVM
 
 tune2fs
 ---------------------------------------------------------------
@@ -139,12 +163,16 @@ mkfs[.xxx]
 ---------------------------------------------------------------
 Build a Linux file system
 mkfs [options] device		-- creates the device(partition) in the desired filesystem
+!mkfs -t ext4 /dev/sdb1		-- creates ext4 file system
+!mkfs.xfs /dev/sdb2		-- creates xsf file system
+!sudo mkfs.ext4 -L [LABEL] [device]	-- creates ext4 fs with LABEL on device
 
 mount
 ---------------------------------------------------------------
 mount a file system
 mount [options] device directory
 !we have to mount a filesystem in empty directory, when we mount a device, we are changing the directory purpose
+!#mount /dev/sdb1 /media/disk1		--mount partition to a directory
 
 umount
 
@@ -178,6 +206,7 @@ lvcreate [options] [lv-name] [options] [vg-name]		--creates logical volume in an
 !Ex.lvcreate -n lv1 -L 500m vg1			--create logical volume with name "lv1" with size of 500mb
 lvextend [options] -L +100m [lv's path]		-- extends the size of the lv
 !Ex. lvextend -L +100m /dev/vg1/lv1			-- increases the size of the "lv1" with 100m
+!#sudo lvextend -l +100%FREE /dev/[volume group]/[logical volume]	-- increases the space to the maximum amout of capacity
 
 
 =================================================================
