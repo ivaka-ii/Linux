@@ -1,3 +1,15 @@
 =================================================================
-    		___
+    		LAMP/LEMP stack
 =================================================================
+Web servers (Apache HTTP)/Nginx			}
+Relational Databases (MariaDB/MySQL)	} LAMP/LEMP Stack	
+Dynamic web content generation			}
+
+Information about we-based management interfaces
+
+
+Web servers (Apache HTTP)/Nginx
+-----------------------------------
+Main purpose is to serve web content (static and dynamic) over HTTP/HTTPS
+Typical ports: 80,443,8080,8443
+!optional web server: lighttpd
