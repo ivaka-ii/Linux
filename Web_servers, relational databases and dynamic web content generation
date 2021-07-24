@@ -13,3 +13,170 @@ Web servers (Apache HTTP)/Nginx
 Main purpose is to serve web content (static and dynamic) over HTTP/HTTPS
 Typical ports: 80,443,8080,8443
 !optional web server: lighttpd
+
+!Tools to insall unzip psmisc tree
+!ex.: sudo yum install -y unzip psmisc tree
+
+Web browser through CLI to check for working web server:
+!sudo yum install -y lynx
+
+!We should use the following command to make edition in the index.html, without entering there:
+echo '<h1>[Text]</h1>' | sudo tee /var/www/html/index.html
+
+			curl
+-----------------------------------
+Tool that gives information about connectivity to particular IP/domain name
+!curl http://localhost
+
+curl -o [file] [https://[link]]		--saves the output from the link into the file in the system
+
+			wget
+-----------------------------------
+wget [https://[link]]		-- saves the output from the link into the file in the system
+
+			Firewall settings 
+-----------------------------------
+sudo firewall-cmd --add-port=80/tcp --permanent		-- adding setting to firewall to add port 80/tcp 
+
+sudo firewall-cmd --reload			-- every time you have to reload the firewall settings	
+
+
+=======================================================
+    		Apache server
+=======================================================
+Cent OS
+-------
+- configuration root		--/etc/httpd
+- main configuration		--/etc/httpd/conf*
+- additional configuration files	
+				-- etc/htppd/conf.d/*.conf
+				-- /etc/httpd/conf.modules.d/*.conf
+install the package:
+!sudo yum install -y httpd
+
+systemctl status httpd		-- checks the state of the service
+
+sudo systemctl enable --now httpd 		-- enables the service in case it is not running
+
+pstree -ps $(pgrep -U 0 httpd)		--shows the whole process status of httpd
+
+ps aux | grep httpd 		-- shows another table for processes
+
+tree /etc/httpd		-- shows in tree mode directories, subdirectories and files for httpd
+
+ls -al /var/www/html	-- shows the directory responsible for the web content
+				
+Suse
+-------
+- configuration root		--/etc/apache2
+- main configuration		--/etc/apache2/*.conf
+- additional configuration files	
+				-- /etc/apache2/ssl.*/*
+				-- /etc/apache2/vhosts.d/*
+				
+Ubuntu
+-------
+- configuration root		--/etc/apache2
+- main configuration		--/etc/apache2/*.conf
+- additional configuration files	
+				-- /etc/apache2/conf-*/*
+				-- /etc/apache2/mods-*/*
+				
+			Virtual host
+-----------------------------------
+It's purpose is to serve more than one site 
+
+/etc/httpd/conf.d/secret.conf		--virtual host sample files
+
+Structure of virtual host: (minimal configuratin)
+<VirtualHost *:80>
+		ServerName "secret.sulab.local"
+		DocumentRoot "/var/www/secret"
+</VirtualHost>
+
+!IN CASE OF MORE THAN 1 SITE TO BE MANAGED:
+!we have to copy the /etc/httpd/conf.d/main.conf into other [file].conf in the same directory
+!then edit it and give different parameters from above
+
+!check with apachectl configtest
+!Be sure to add working directory in the /var/www/[site]
+
+!Don't forget to add the IPs to /etc/hosts
+			Log control
+-----------------------------------
+/etc/httpd/conf.d/secret.conf		--virtual host sample file
+
+Structure of logging cinfig:
+<VirtualHost *:80>
+		ServerName "jupiter.sulab.local"
+		DocumentRoot "/var/www/html"
+		ErrorLog "logs/jupiter_error.log"
+		CustomLog "logs/jupiter_access.log" common
+</VirtualHost>
+
+			Access control by IP
+-----------------------------------------
+/etc/httpd/conf.d/main.conf		--virtual host sample file
+
+<VirtualHost *:80>
+		ServerName "jupiter.sulab.local"
+		DocumentRoot "/var/www/html"
+		<Location />
+				require ip 127.0.0.1
+		<Location />	
+</VirtualHost>
+
+			Access control by User
+-----------------------------------------
+/etc/httpd/conf.d/secret.conf		--virtual host sample file
+
+!Structure of control for users to get access to the server settings
+<VirtualHost *:80>
+		ServerName "secret.sulab.local"
+		DocumentRoot "/var/www/secret"
+		<Directory "/var/www/secret">
+				Require valid-user
+				AuthType Basic
+				AuthName "Private Access"
+				AuthBasicProvider file
+				AuthUserFile "/etc/httpd/conf.d/secret.conf"
+		</Directory>
+</VirtualHost>
+
+			apachectl
+-----------------------------------------
+Apache HTTP server control interface
+apachectl [command]
+!apachectl configtest		-- check the configuration of apache
+
+=======================================================
+    		Nginx web server
+=======================================================
+Cent OS
+-------
+- configuration root		--/etc/nginx
+- main configuration		--/etc/nginx/nginx.conf
+- additional configuration files	
+				-- etc/nginx/conf.d/*.conf
+- default document root
+				-- /usr/share/nginx/html
+				
+Suse!(for revision)
+-------
+- configuration root		--/etc/apache2
+- main configuration		--/etc/apache2/*.conf
+- additional configuration files	
+				-- /etc/apache2/ssl.*/*
+				-- /etc/apache2/vhosts.d/*
+- default document root
+				-- /srv/www/htdocs			
+				
+Ubuntu!(for revision)
+---------
+- configuration root		--/etc/apache2
+- main configuration		--/etc/apache2/*.conf
+- additional configuration files	
+				-- /etc/apache2/conf-*/*
+				-- /etc/apache2/mods-*/*
+- default document root
+				-- /var/www/html
