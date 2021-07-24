@@ -1,0 +1,126 @@
+=================================================================
+					DATABASES
+=================================================================
+				Overall information
+----------------------------------------------------
+Database is a container for a data
+
+Many classifications:
+- Class	- Desktop, Server, Enterprise
+- Organization	- Relational, object, NoSQL
+- Purpose	- Operational (OLTP), Data warehouse, Analithycal (OLAP)
+
+Typical
+- Relational - MariaDB, MySQL, PostgreSQL, Oracle, MS SQL
+- NoSQL - MongoDB, Cassandra, Redis, Couchbase
+
+Database files
+
+They are as follows:
+-.opt 		-- options/settings			}  General files 
+-.frm 		-- structure				}
+-.idb		-- data and indexes				}
+-.myd		-- data							}Engine specific files
+-.mid		-- indexes						}
+
+File location - /var/lib/mysql
+show variables like 'datadir';
+
+Database objects
+
+Table
+- Rows and columns
+- Constraints
+- Indexes
+
+View
+- stored logic for reading a data set
+
+Stored Procedures and Functions 
+
+Data Types
+Numeric:
+- Whole - TINYINT, SMALLINT, MEDIUMINT, INT, BIGINT	}
+- Fixed - Decimal									} Exact Numerics 
+- Floating - FLOAT, DOUBLE							}
+
+String:
+- CHAR, VARCHAR
+- TINYTEXT, TEXT, MEDIUMTEXT, LONGTEXT
+
+Date and time
+- DATE, TIME, DATETIME, TIMESTAMP
+					
+					Basic Operations
+----------------------------------------------------
+Basic DCL, DDL and DML Statements:
+
+Data Definition Language(DDL)		-- used to create, modify and delete database objects
+
+Data Manipulation Language(DML)		-- used to retrieve, insert, update and delete data in database
+
+Data Control Language(DCL)			-- used to control access rights 
+
+Transaction Control Language(TCL)	-- used to control transactions within the database
+
+CREATE (DDL)
+-----------------------------------------------------
+Create database objects like tables, views, indexes and others
+
+CREATE object_type object_name DEFINITION
+!CREATE TABLE T1 (id INT, person_name VARCHAR(100));	-- create a single table
+!CREATE VIEW V1 AS SELECT person_name FROM T1; 			-- create a simple view
+
+DROP (DDL)
+-----------------------------------------------------
+Remove database objects like tables, views, indexes and others
+
+DROP object_type object_name
+!DROP TABLE T1		-- drop existing table
+!DROP VIEW T!		--drop existing view
+
+SELECT (DML)
+-----------------------------------------------------
+Read a data set from a table or set of tables or views
+
+!SELECT list_of_colums		-- What?								} Required
+!FROM table_or_view			-- From where							}
+![[INNER|LEFT|RIGHT] JOIN table_or_view ON criteria]		--enter or shrink data set		}
+![WHERE filter]				-- Apply a filter on the data set								} Optional
+![GROUP BY group_list]		-- Aggregate the data set										}
+![ORDER BY order_list]		-- Sort the result set											}
+
+INSERT (DML)
+-----------------------------------------------------
+Add new row(s) to a table
+
+!INSERT INTO object_name VALUES value_list
+!INSERT INTO T1(person_name) VALUES ('John');		-- Insert one row of data
+!INSERT INTO T1(person_name) VALUES ('Jim'), ('Ed');		-- Insert two more rows of data
+
+DELETE (DML)
+-----------------------------------------------------
+Delete data from table
+
+!DELETE FROM object_name [WHERE condition]
+!DELETE FROM T1 WHERE person_name='Ed';			-- delete one record
+!DELETE FROM T1 						-- delete all records from a table
+
+UPDATE (DML)
+-----------------------------------------------------
+Update set of records
+
+!UPDATE object_name SET field=value [WHERE filter]
+!UPDATE T1 SET salary=salary+100;		-- increase all salaries with 100 units
+!UPDATE T1 SET bonus=1000 WHERE eyes_color='blue';	--set bonus for all people with blue eyes to 1000
+
+JOIN (Part of the SELECT statement)
+-----------------------------------------------------
+Link additional data source based on a condition
+
+LEFT|INNER|RIGHT JOIN source ON condition
+!SELECT T1.id, T1.person_name, T2.department_name
+!FROM T1
+!LEFT JOIN T2 on T1.did=T2.id		-- Joins records from two tables
+					MariaDB
+----------------------------------------------------
