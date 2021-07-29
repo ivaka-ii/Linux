@@ -180,4 +180,38 @@ Ubuntu!(for revision)
 				-- /etc/apache2/mods-*/*
 - default document root
 				-- /var/www/html
+				
+=======================================================
+    		Web content generation
+=======================================================
+Different types of web content:
+- static;
+- pseudo-dynamic;
+- dynamic
 
+Different approaches:
+- client-side;
+- server-side scripting;
+- combination.
+
+Typical tools:
+PHP, Perl, Python, Ruby, Java ...
+
+    		Web-based Administration tools
+=======================================================
+Many functionalities		--different offerings, support options and capabilities
+
+Cockpit			-- for fedora and RH
+
+Ajenti			-- for fedora and RH
+
+Webmin 			-- for fedora and RH and suse
+
+CentOS Web Panel	-- for CentOS
+
+!!!Whenever you are changing the web content in the file... RESTART httpd service!!!
+
+!!!Whenever we install service and check whether it is running on the system, don't forget to check whether the firewall permits the port that it's working with!!
+!sudo firewall-cmd --add-service=[name] --permanent     -- adds a service permit in the firewall (the port is accepted in the server)
+!sudo firewall-cmd --add-port=[port number]/[protocol] --permanent		-- adds firewall port
+!sudo firewall-cmd --reload		--reloads the firewall settings
