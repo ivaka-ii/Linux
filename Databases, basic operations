@@ -122,5 +122,70 @@ LEFT|INNER|RIGHT JOIN source ON condition
 !SELECT T1.id, T1.person_name, T2.department_name
 !FROM T1
 !LEFT JOIN T2 on T1.did=T2.id		-- Joins records from two tables
+
+GRANT (DCL)
+-----------------------------------------------------
+Give permisssions to a user over an object
+
+GRANT privileges ON object TO user
+!GRANT ALL ON DATABASE_1.* TO user@localhost
+!IDENTIFIED BY 'Password1'; 					-- Create user and grant permisssions to a database
+!FLUSH PRIVILEGES;			-- apply privileges
+
+REVOKE (DCL)
+-----------------------------------------------------
+Revoke permisssions to a user over an object
+
+REVOKE privileges ON object FROM user
+!REVOKE INSERT ON DATABASE_1.* FROM user@localhost			-- Revoke insert permisssions from a user
+!FLUSH PRIVILEGES;			-- apply privileges
+
+
+				Database tools
+=====================================================
+mysql_secure_installation
+-----------------------------------------------------
+Post-installation wizard used to secure the installed instance
+
+mysql_secure_installation [options]		--syntax to start
+!mysql_secure_installation			-- starts the wizard
+
+mysql
+-----------------------------------------------------
+Client application to communicate with MariaDB daemon
+
+mysql [options]			-- syntax
+!mysql -u root -p		-- connect to a local MariaDB daemon
+!mysql -u root -p db1 < dump.sql		-- import database backup
+
+mysqldump
+-----------------------------------------------------
+Tool to extract / backup a database
+
+mysqldump [options]
+
+!mysqldump -u root -p sudemo > sudemo.sql		-- export single database
+!mysqldump -u root -p --all-databases > exp.sql 	--export all databases
+
+
+
 					MariaDB
 ----------------------------------------------------
+1. sudo yum install -y mariadb mariadb-server		-- installs the client and server part of MariaDB
+
+2. sudo systemctl enable --now mariadb				-- enables the mariadb service
+
+3. sudo mysql_secure_installation 					-- makes password for DB
+
+4. mysql -u root -p									-- enters the database terminal
+!show database;				-- shows the database schemas
+!create table persons ( id int,  department_id int, person_name varname(50), person_sex char(1), person_salary decimal(15,3) );		--creates table Persons
+!show tables;				-- shows the table
+!insert into persons ( id int, department_id int, person_name, person_sex, person_salary ) /
+values (1, 1, 'John Snow', 'M', 5000), (2, 2, 'Tony James', 'M', 3000), (3, 3, 'Kate Hudson', 'F', 1500), (4, 4, 'Ann Evans', 'F', 3500)		-- adds values to all the table contents
+!select id, person_name from persons where person_sex = 'F';		-- shows contents of table where it maches exact variable
+
+!select p.person_name, d.department_name		--selecting alias from database tables
+!select p.person_name, d.department_name from persons p inner join departments d on p.department_id = d.id;			--example of inner join
+!update persons set department_id = 4 where id=4;			-- updates specific variable when meeting specific statement (id)
+!select p.person_name, d.department_name from persons p left join departments d on p.department_id = d.id; 			-- where shows joined table with left one preferences
