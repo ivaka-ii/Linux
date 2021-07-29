@@ -86,9 +86,13 @@ With nmtui
 ======================================================
 Fedora distros are using firewalld
 
+
 Firewalld
 ------------------------------------------------------
 Firewalld is dynamically managed wirewall with support of zones
+!!!Whenever we install service and check whether it is running on the system, don't forget to check whether the firewall permits the port that it's working with!!
+!sudo firewall-cmd --add-service=[name] --permanent     -- adds a service permit in the firewall (the port is accepted in the server)
+!sudo firewall-cmd --add-port=[port number]/[protocol] --permanent		-- adds firewall port
 Managed through:
 -firewalld-cmd				-- command line interface
 -firewall-offline-cmd		-- special offline tool
@@ -104,8 +108,8 @@ sude firewall-cmd --set-default-zone=internal		--sets the default zone
 
 firewall-cmd --get-services		--get firewall services
 sudo firewall-cmd --add-service=http --permanent	-- add firewall service
-sudo firewall-cmd --add-port=[port number]/[protocol] -- permanent		-- adds firewall port
-!Ex. sudo firewall-cmd --add-port=22/tcp -- permanent		-- adding port 22 with tcp protocol
+sudo firewall-cmd --add-port=[port number]/[protocol] --permanent		  -- adds firewall port
+!Ex. sudo firewall-cmd --add-port=22/tcp --permanent		              -- adding port 22 with tcp protocol
 sudo firewall-cmd --reload		-- reload firewall configuration
 
 Uncomplicated firewall (ufw)
