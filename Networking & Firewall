@@ -93,6 +93,8 @@ Firewalld is dynamically managed wirewall with support of zones
 !!!Whenever we install service and check whether it is running on the system, don't forget to check whether the firewall permits the port that it's working with!!
 !sudo firewall-cmd --add-service=[name] --permanent     -- adds a service permit in the firewall (the port is accepted in the server)
 !sudo firewall-cmd --add-port=[port number]/[protocol] --permanent		-- adds firewall port
+!sudo firewall-cmd --reload		--reloads the firewall settings
+
 Managed through:
 -firewalld-cmd				-- command line interface
 -firewall-offline-cmd		-- special offline tool
