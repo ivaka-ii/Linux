@@ -320,6 +320,7 @@ find [filename]			--this command searches the live filesystem
 !find /tmp -type f -user root		-- Find all files owned by particular user
 !find /tmp -type f ! -user root		-- Find all files which do not belong to particular user
 !find /tmp -type f -mtime 0 -ls		-- all files that are changed today
+!find /[path] -type f -name "[file name*]"	-- searches "[file name*]" in /[path]
 
 !!!find / -type f -exec grep -H 'text-to-find-here' {} \; 		--Cmd that finds specific text into all files (do with sudo)
 
@@ -338,6 +339,8 @@ follow [file]			-- follows file if the file is
 
 uniq [file name]		-- report or omit/eliminates repeated lines
 sort [file]			-- sorts the output of a file in alphabetical and digit order
+sort -r				-- reverse sort files
+sort | tac			-- reverse showing of sort
 wc [file]			-- word count --Print newline, word, and byte counts for each FILE, and a total line if more than one FILE is specified.
 				A word is a non-zero-length sequence of characters delimited by white space.
 nl -w 3				-- prints file with lines
