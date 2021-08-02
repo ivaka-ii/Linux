@@ -1,0 +1,160 @@
+=================================================================
+    		            Contents
+=================================================================
+1. Bash in details
+2. Scheduled task executions
+3. Writing scripts in bash
+4. Additional information and tools
+
+                        BASH
+=================================================================
+when we enter some cmd on the terminal this is what happens:
+
+shell -> fork() - copy of the shell -> shell 
+								     |
+									 -> shell copy -> exec(s) -> ls
+									 
+shell forms child shell parent -> child, then this copy execs the command and then the system is returning to the shell back
+
+![ "$0" = "$BASH_SOURCE" ]			-- comparing two variables
+!&& 		-- if output is success, continue with next process
+!||			-- if output is not success use OR do other process
+
+!Whenever you are creating bash script files, don't forget to give them permission to execute
+
+to execute bash scripts:
+bash [bash file].sh or ./[bash file].sh		or sh [bash file].sh		-- runs the bash file
+source [bash file].sh			-- if there is some variable - SOURCING will remain the the variable into our own bash shell
+exec ./[bash file].sh			-- makes child process, then it merges our own process with the bash session... so it terminates the current session
+
+/etc/bashrc		-- where the starting bash instruction lies
+
+
+			Sourcing vs. Execution
+-----------------------------------------------------------------
+Sourcing:
+- no subshell is created
+- any variables set become part of the environment
+Methods: . script.sh or source script.sh
+
+Execution:
+- Subshell is always created
+- No subshell if using exec ./script.sh
+
+
+User Login session files and sequence
+-----------------------------------------------------------------
+#there is picture to know the sequence
+
+!breaking long commands:
+instead of having long command as this: "#cut -d : -f 7 /etc/passwd | sort | uniq | wc -l"
+We can type it that way:
+#cut -d : -f 7 /etc/passwd \
+ | sort \
+ | uniq \
+ | wc -l
+ 
+ Well known variables
+-----------------------------------------------------------------
+General purpose:
+$? 		-- return the exit code of last executed command (0 or 1 or else)
+$!		-- return the PID of the last job run in backgroung
+$$		-- returns the PID of the current process
+$_		-- return the final argument of the previous command
+
+Prompt related:
+$PS1		-- regular prompt
+$PS2		-- prompt during multi-line commands
+
+					SCRIPTING
+=================================================================
+
+echo
+-----------------------------------------------------------------
+dispays line of text
+
+read
+-----------------------------------------------------------------
+read a line from standart input and split it into fields
+
+!read -p "Enter name: " NM_ENT
+!>James
+!echo $NM_ENT
+!James
+
+if
+-----------------------------------------------------------------
+execute comands based on conditional
+
+!Example:
+count=1
+if [ $count -eq 0 ]; then
+	echo 'Equal to 0'
+else 
+	echo 'Not equal to 0'
+fi
+
+test
+-----------------------------------------------------------------
+Evaluate conditional expression
+
+!Example:
+Comparing numbers: OP1 -eq | -ne | -lt | -le | -gt | -ge OP2		-- equal,not equal, less than, less equal, greater than, greater equal
+Comparing strings:	ST1 = | != | < | > ST2		
+Comparing files: FL1 -nt | -ot FL2		-- newer than and older than 
+File tests: -d | -e | -f | -x FILE 		-- directory, existingm file, executable and etc.
+
+case 
+-----------------------------------------------------------------
+Execute comands based on conditional
+
+!Example:
+count=1
+case $count
+	1) echo 'One'
+#here it is checking whether it is one before the ')'
+		;;			# next command 
+	*) echo 'Not one'	 -- #checks whether it is any other number and prints 'Not one'
+esac
+
+
+
+					SCHEDULING
+=================================================================
+Regular and repetitive tasks
+- clearing, archiving or monitoring
+
+Runtime varies
+	- scheduled based on one-time, but at specific moment
+
+Defined on system or user level
+
+cron
+-----------------------------------------------------------------
+Main task scheduler in Linux
+
+Components:
+- crond			-- Daemaon
+- crontab		-- Management tool
+
+crontab -e 		-- creates task only for user
+sudo crontab -e 	-- will create task for sudo, everyone
+
+
+/etc/cron*		-- configuration files
+
+/var/spool/cron/*		-- per user jobs
+
+systemctl status crond		-- checks the service cron
+
+at
+-----------------------------------------------------------------
+run a task once at a specific time
+each task is queued at /var/spool/at
+security is defined through /etc/at.allow and /etc/at.deny
+
+at 			-- main utility
+atq			-- show jobs at at's queue
+atrm		-- delete at jobs
+
+!Shortcuts for at - today, midnight, noon, teatime, date, now + time
