@@ -140,6 +140,11 @@ REVOKE privileges ON object FROM user
 !REVOKE INSERT ON DATABASE_1.* FROM user@localhost			-- Revoke insert permisssions from a user
 !FLUSH PRIVILEGES;			-- apply privileges
 
+updatedb
+-----------------------------------------------------
+updatedb [options]		-- update a database for mlocate
+!updatedb			-- update the database
+!updatedb -o output.txt		-- write the update to a file
 
 				Database tools
 =====================================================
