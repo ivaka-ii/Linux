@@ -174,6 +174,9 @@ mount [options] device directory
 !we have to mount a filesystem in empty directory, when we mount a device, we are changing the directory purpose
 !#mount /dev/sdb1 /media/disk1		--mount partition to a directory
 
+!mount -t ext4 /dev/sdb1 /mnt/extraspace
+!mount -a /dev/sdb1 /mnt/extraspace	-- creates ext4 file system on the 1st partition on the second hard disk in your system and mount it in /mnt/extraspace in read-write mode
+
 umount
 
 blkid
