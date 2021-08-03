@@ -190,6 +190,7 @@ whereis [command]	--shows the path of the command or man pages and where is loca
 !Man pages are normally easily distinguished between commands as they are normally compressed 
 with a command called gzip, resulting in a filename that ends in .gz
 locate [name of file]   -- to any file or directory throughot the system;
+locate [options] pattern
 !locate works only if you are system administrator (root user),
 						or it is limited due to file permisions;
 udatedb				--updates db (only admin can perform this)
@@ -197,8 +198,10 @@ locate -c [command] --shows how many files wil match the locate command
 locate -c -b [command]    -- shows limited  output produced by the locate command. This option will 
 only include listings that have the search term in the basename of the filename. 
 The basename is the portion of the filename not including the directory names.
-locate -b "/[command]" 	  --(/)This character limits the output to filenames that exactly match 
-							the term
+locate -b "/[command]" 	  --(/)This character limits the output to filenames that exactly match the term
+!locate readme			-- locate all readme files
+!locate -i readme		-- locate all readme files ina a case insensitive way
+
 !info is more advanced feature that man pages
 !/usr/share/doc 	--the place where all man and info pages are located
 aptitude 			--package management tool
@@ -534,6 +537,20 @@ Set group ID		-- allows users to run a program as if it was member of the group
 
 chmod 2644 [file]	-- set SGID to a file with a permissions 644
 chmod g+s [file]	-- set SGID using a symbolic notation
+
+last
+----------------------------------------------------
+show listing of last logged users
+last [options]
+
+!last -n 5 		-- list the last five lines
+!last -F		-- print full login and logout times and dates
+
+lastb		-- show listing of last unsuccessful login attempts
+lastb [options]
+!lastb -n 5		-- list the last five lines
+!lastb -w		-- display full user and domain names
+
 
 ACLs
 ------------------------------------------------------------
