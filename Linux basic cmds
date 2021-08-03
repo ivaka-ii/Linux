@@ -316,18 +316,46 @@ stderr = 2>				--2 descriptor for stderr
 tr						--translates characters
 !tr a-z A-Z 
 !tr a-z A-Z > [file]	--translates output into a file
+
+find
+-----------------------------------------------------------------------------
 find [filename]			--this command searches the live filesystem
 !find <directory to start search> -criteria <argument for criteria>
 !find /usr -size +2M
 !find /usr/share/bug -type d    	 -- Find files of type “directory” in the specified location.
 !find /tmp -type f -user root		-- Find all files owned by particular user
 !find /tmp -type f ! -user root		-- Find all files which do not belong to particular user
+!find /home -group developer		-- find all files that belong to the group Developer under /home directory.
 !find /tmp -type f -mtime 0 -ls		-- all files that are changed today
 !find /[path] -type f -name "[file name*]"	-- searches "[file name*]" in /[path]
-
+!find /home -iname [file]			-- finds files using name and ignoring case
+!find / -type d -name [name]		-- finds directories in / with name
+!find . -type f -perm 0777 -print		-- find all the files, whose permisions are 777
+!find / -type f ! -perm 777				-- finds files without permission 777
+!find / -perm /u=r					-- finds read only files
+!find / -perm /a=x					-- finds all Executable files
+!find / -type f -perm 0777 -print -exec chmod 644 {} \;		-- Find all 777 permission files and use chmod command to set permissions to 644.
+!find / -type d -perm 777 -print -exec chmod 755 {} \;		-- Find all 777 permission directories and use chmod command to set permissions to 755.
+!find . -type f -name "tecmint.txt" -exec rm -f {} \;		-- To find a single file called tecmint.txt and remove it.
+!find . -type f -name "*.txt" -exec rm -f {} \;
+OR find . -type f -name "*.mp3" -exec rm -f {} \;			-- To find and remove multiple files such as .mp3 or .txt, then use.
+!find /tmp -type f -empty							-- To find all empty files under a certain path.
+!find /tmp -type d -empty							-- To file all empty directories under a certain path.
+!find /tmp -type f -name ".*"						-- To find all hidden files.
 !!!find / -type f -exec grep -H 'text-to-find-here' {} \; 		--Cmd that finds specific text into all files (do with sudo)
-
+!find / -mtime 50					-- To find all the files which are modified 50 days back.
+!find / -atime 50					-- To find all the files which are accessed 50 days back.
+!find / -mtime +50 –mtime -100		-- To find all the files which are modified more than 50 days back and less than 100 days.
+!find / -cmin -60					-- To find all the files which are changed in the last 1 hour.
+!find / -mmin -60					-- To find all the files which are modified in the last 1 hour.
+!find / -size 50M					-- To find all 50MB files
+!find / -size +50M -size -100M		-- To find all the files which are greater than 50MB and less than 100MB.
+!find / -type f -size +100M -exec rm -f {} \;		-- To find all 100MB files and delete them using one single command.
+!find / -type f -name *.mp3 -size +10M -exec rm {} \;		-- Find all .mp3 files with more than 10MB and delete them using one single command
 Ex. find /etc -type f -size -200c -ls > small_etc_files.txt 	-- finds all files in directory smaller than 200 bytes and stores the output to file
+
+more & less
+------------------------------------------------------------------------------------
 more | less 			-- cmds after Pipeline, shows output in pages
 "less is more"
 less				-- more advanced tool than more
