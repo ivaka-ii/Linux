@@ -1,4 +1,4 @@
-						Useful shortcuts
+					Useful shortcuts
 						
 Ctrl + last			--clear screen
 $ 					--uses regular user commands
@@ -495,7 +495,7 @@ du -sh				-- summarized and human readable option of dh
 Users
 --------------------------------------------------
 useradd				-- 
-usermod
+usermod -a -G [group] [user]		-- assigns [user] to [group]
 userdel
 adduser (ubuntu)		--	
 deluser (ubuntu)		--
