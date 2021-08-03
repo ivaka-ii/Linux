@@ -1,0 +1,88 @@
+Q:Which directories in the Linux file system are included in the path. What command can you use?
+A:env and echo $PATH
+
+Q:You need to add user james to secondary group developers. Which cmd can be used to do this?
+A: usermod -aG developers james
+
+Q: Which file contains a list of most recently entered shell commands?
+A: ~/.bash_history
+
+Q: Which of the following manual sections contains man pages for utilities and commands that can be used by any user?
+A: 1
+
+Q: You are using man to view the man page for the chmod utility. Which keystroke will exit man?
+A: Q
+
+Q: You need to search for man pages that relate to the Samba daemon. Which command will do this? (Choose two)
+A: man -k samba and apropos samba
+
+Q: You want to vies a list of the aliases currently defined on your Linux system. Which command will do this?
+A: alias
+
+Q: Where are most configuration files stored in the Linux file system?
+A: /etc
+
+Q: You are logged on the terminal and your current directory is /etc. You want to create file named readme.txt in your home directory. Which command will do this?
+A: vi ~/readme.txt
+
+Q: Which keystroke will switch vi from command mode ti insert mode?
+A: I and INSERT
+
+Q: You have made several changes to a config file, using vi. You realize that you have made many mistakes and want to quit without saving changes. 
+Which command will do this?
+A: :q!
+
+Q: You have created a new file using vi and need to save the file to disk and exit the program. Which command will do this?(Choose two)
+A: :wq and :exit
+
+Q: Which directory is the home directory of the root user?
+D: /root
+
+Q: You ned to delete the Temp directory within your user's home directory. Given that Temp has files in it, which is the best command to do this?
+A: rm -r ~/Temp
+
+Q: you need to find all files named readme.txt in your Linux file system. Which is the correct command to do this?
+A: find / -name readme.txt
+
+Q: Tou need to ezamine the contents of your /var/messages.log file, but you would like to scroll it forward and backward, and to search in it. Which is the best command to do this?
+A: less /var/messages.log
+
+Q: Where does the Linux kernel reside?
+A: /boot
+
+Q: Which config parameter in /etc/default/grub specifieshow long the system will wait before the default operating system is booted?
+A: GRUB_TIMEOUT
+
+Q: You need to switch your system to runlevel 3. Which command should you use?
+A: systemctl isolate multi0user.target
+
+Q: You have an RPM package file with some version, installed on your Linux system. You recently downloaded the new version of the package.
+Which command would install the newer version of this package
+A: rpm -U [package_name].rpm
+
+Q: You created an ext4 file system on the 1st partition on the second hard disk in your system and now need to mount it in /mnt/extraspace in read-write mode.
+Which commands will do this?(Choose two)
+A: mount -t ext4 /dev/sdb1 /mnt/extraspace
+   mount -a /dev/sdb1 /mnt/extraspace
+   
+ Q: Which of the following files are used to store user accounts related information on a Linux system that has been configured to use local authentication?
+ A: /etc/shadow and /etc/passwd
+ 
+ Q: You need to install Apache Web Server and PHP. Which commands will do this? (choose two)
+ A: yum install httpd php and yum install -y httpd php
+ 
+ Q: You have downloaded an RPM package to your home directory. Assuming the current directory is your home directory, what command could you use to install the package on your system?
+ (Choose two)
+ A: rpm -ivh [package_name].rpm and rpm -Uvh [package_name].rpm
+ 
+ Q:You need to format the second partition on the third SATA disk using the ext4 file system. Which is the correct command to do this?(Choose two)
+ A: mkfs -t ext4 /dev/sdc2 and mkfs.ext4 /dev/sdc2
+ 
+ Q: You need to change the ownership of the readme.txt file to user and users. Which command will do this? (Choose two)
+ A: chown user:users readme.txt  and  chown user.users readme.txt
+ 
+ Q: You need to create an archive of /etc to a removable disk drive mounted at /mnt/backup. Which command will do this?
+ A: tar -czvf /mnt/backup/backup.tar.gz /etc
+
+
+
