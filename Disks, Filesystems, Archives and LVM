@@ -183,6 +183,8 @@ blkid
 ---------------------------------------------------------------
 Locate or print block device attributes
 
+ls -al /dev/sd*			--list all SCSI/SAS/SATA hard drives in the system and their partitions
+
 ---------------------------------------------------------------
 Logical volume manager(LVM)
 ---------------------------------------------------------------
