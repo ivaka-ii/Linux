@@ -1,6 +1,7 @@
+=========================================================================================
 					Useful shortcuts
-						
-Ctrl + last			--clear screen
+=========================================================================================
+Ctrl + L			--clear screen
 $ 					--uses regular user commands
 #					--uses root user commands
 cat > [file]		--creates file and start to output / rewrites what is directed and overwrites the file
