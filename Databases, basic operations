@@ -86,9 +86,12 @@ Read a data set from a table or set of tables or views
 !SELECT list_of_colums		-- What?								} Required
 !FROM table_or_view			-- From where							}
 ![[INNER|LEFT|RIGHT] JOIN table_or_view ON criteria]		--enter or shrink data set		}
-![WHERE filter]				-- Apply a filter on the data set								} Optional
+								} Optional
 ![GROUP BY group_list]		-- Aggregate the data set										}
 ![ORDER BY order_list]		-- Sort the result set											}
+
+!SELECT DISTINCT [column] FROM [table name]		-- shows only different values from [table name]
+!SELECT COUNT(DISTINCT [column]) FROM [table name]		-- shows how many entries there are in the table
 
 INSERT (DML)
 -----------------------------------------------------
@@ -106,9 +109,52 @@ Delete data from table
 !DELETE FROM T1 WHERE person_name='Ed';			-- delete one record
 !DELETE FROM T1 						-- delete all records from a table
 
+WHERE filter				
+-----------------------------------------------------
+Apply a filter on the data set
+!The WHERE clause is not only used in SELECT statements, it is also used in UPDATE, DELETE, etc.!
+!WHERE clause can be used with NOT - to find any entry that is not in WHERE clause
+
+SQL AND, OR and NOT Operators			
+-----------------------------------------------------
+The WHERE clause can be combined with AND, OR, and NOT operators.
+
+The AND and OR operators are used to filter records based on more than one condition:
+- The AND operator displays a record if all the conditions separated by AND are TRUE.
+- The OR operator displays a record if any of the conditions separated by OR is TRUE.
+
+!The NOT operator displays a record if the condition(s) is NOT TRUE.
+
+ORDER BY
+-----------------------------------------------------
+The ORDER BY keyword is used to sort the result-set in ascending or descending order.
+
+The ORDER BY keyword sorts the records in ascending order by default. To sort the records in descending order, use the DESC keyword.
+
+!The following SQL statement selects all customers from the "Customers" table, sorted ascending by the "Country" and descending by the "CustomerName" column:
+SELECT * FROM Customers
+ORDER BY Country ASC, CustomerName DESC;
+
+NULL Values
+-----------------------------------------------------
+ A NULL value is different from a zero value or a field that contains spaces. A field with a NULL value is one that has been left blank during record creation!
+ 
+!IS NULL Syntax:
+
+SELECT column_names
+FROM table_name
+WHERE column_name IS NULL;
+
+!IS NOT NULL Syntax
+SELECT column_names
+FROM table_name
+WHERE column_name IS NOT NULL;
+
 UPDATE (DML)
 -----------------------------------------------------
 Update set of records
+!Be careful when updating records in a table! Notice the WHERE clause in the UPDATE statement. The WHERE clause specifies which record(s) that should be updated. 
+If you omit the WHERE clause, all records in the table will be updated!
 
 !UPDATE object_name SET field=value [WHERE filter]
 !UPDATE T1 SET salary=salary+100;		-- increase all salaries with 100 units
@@ -139,6 +185,7 @@ Revoke permisssions to a user over an object
 REVOKE privileges ON object FROM user
 !REVOKE INSERT ON DATABASE_1.* FROM user@localhost			-- Revoke insert permisssions from a user
 !FLUSH PRIVILEGES;			-- apply privileges
+
 
 updatedb
 -----------------------------------------------------
