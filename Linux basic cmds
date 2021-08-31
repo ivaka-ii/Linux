@@ -1,9 +1,9 @@
 =========================================================================================
 					Useful shortcuts
 =========================================================================================
-Ctrl + L			--clear screen
-$ 					--uses regular user commands
-#					--uses root user commands
+Ctrl + L			-- clear screen
+$ 					-- uses regular user commands
+#					-- uses root user commands
 cat > [file]		--creates file and start to output / rewrites what is directed and overwrites the file
 cat >> [file]		-- append output to file
 cat -n [file]		-- shows how many lines file has
@@ -24,7 +24,9 @@ tac			-- concatenate and print files in reverse
 
 diff [file1] [file2]	-- shows difference from file1 and file2 line by line
 
-						BASIC CLI COMMANDS
+====================================================================================
+				BASIC CLI COMMANDS
+====================================================================================
 cd	[options] [path]--changes directory
 cd ..				--goes one directory up
 cd ~				--goes to the home directory of the current user
@@ -82,6 +84,7 @@ PATH=/usr/bin/custom:$PATH -- If custom software is installed on your system,
  alias				--command that sees what aliases are set on shell
  !alias [name=command]  --creates new alias (when shell is closed, this would eraze 
                            the created alias)
+file					-- determines the file types
 *					--represent zero or more of any character in a filename(Ex.:echo /etc/*.d)
 ?					--question mark represents any one character. Each question mark character 
 					matches exactly one character, no more and no less
