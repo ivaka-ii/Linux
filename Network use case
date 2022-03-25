@@ -1,0 +1,39 @@
+=======================================
+Network use case 
+=======================================
+Client or server problem
+------------------------
+If there is not connection from one server(dev1) to another (web1) we can try 
+to troubleshoot connection from different server on same network (dev2) to web 1.
+
+Is It Plugged In?
+------------------------
+We can verify that the dev1 has a healthy connection using tool such as ethtool
+-check network interfaces with ifconfig
+
+-run cmd $sudo ethtool [network interface]
+
+$ sudo ethtool eth0
+Settings for eth0:
+     Supported ports: [ TP ]
+     Supported link modes:   10baseT/Half 10baseT/Full
+                               100baseT/Half 100baseT/Full
+                               1000baseT/Half 1000baseT/Full
+     Supports auto-negotiation: Yes
+     Advertised link modes:  10baseT/Half 10baseT/Full
+                               100baseT/Half 100baseT/Full
+                               1000baseT/Half 1000baseT/Full
+     Advertised auto-negotiation: Yes
+     Speed: 100Mb/s
+     Duplex: Full
+     Port: Twisted Pair
+     PHYAD: 0
+     Transceiver: internal
+     Auto-negotiation: on
+     Supports Wake-on: pg
+     Wake-on: d
+     Current message level: 0x000000ff (255)
+     Link detected: yes
+	 
+If Link detected: yes - the link is physically connected to the network.
+if it is no - we should physically inspect dev1's network connection
